@@ -5,6 +5,7 @@ enum MessageType {
   Message
 }
 enum StateType {
+  None,
   Main,
   Content,
   Cartable,

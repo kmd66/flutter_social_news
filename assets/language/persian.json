@@ -1,0 +1,14 @@
+{
+  "Language" : "زبان",
+  "Persian": "فارسی",
+  "English": "انگلیسی",
+  "SoftwareName" : "نرم افزار خبر",
+  "UserName" : "نام کاربری",
+  "Password" : "رمز عبور",
+  "Login" : "ورود",
+  "Register" : "ثبت نام",
+  "ForgetPassword" : "تغییر رمزعبور",
+  "PhoneNumber" : "شماره همراه",
+  "SecurityCode" : "کد امنیتی",
+  "GetSecurityCode" : "دریافت کد امنیتی"
+}

@@ -8,6 +8,7 @@ import 'package:flutter_social_news/helper/textStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:flutter_social_news/helper/language.dart';
 import 'States/afterSplash.dart';
 import 'events.dart';
 import 'package:flutter_social_news/core/apiModel.dart' as apiModel;
@@ -21,6 +22,7 @@ class _MainPage extends State<MainPage> {
 
   Future<Widget> loadFromFuture() async {
     await getData();
+    await Language.set();
     await AppStrings.loadJson();
 
     // return Future.value(new Login());

@@ -64,7 +64,7 @@ class _Dropdown extends State<Dropdown> {
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.white,
                 elevation:5.0,
-                shadowColor: BaseColor,
+                shadowColor: ObjectColor.base,
                 child:
                 new DropdownButtonFormField<keyValue>(
                   decoration: InputDecoration(
@@ -73,7 +73,7 @@ class _Dropdown extends State<Dropdown> {
                       contentPadding: EdgeInsets.all(20.0),
                       enabledBorder:  OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide:  BorderSide(color: BaseColor, width: 0.0),
+                        borderSide:  BorderSide(color: ObjectColor.base, width: 0.0),
                       ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),

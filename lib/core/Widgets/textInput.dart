@@ -5,16 +5,19 @@ import 'package:flutter/material.dart';
 
 
 class TextInput extends StatelessWidget {
-  TextInput({
+  TextInput(this.label, {
     bool obscureText = false,
-    this.model, this.onChange, this.label
+    TextInputType textInputType = TextInputType.none,
+    this.model, this.onChange
   }) :
-        this.obscureText = obscureText;
+        this.obscureText = obscureText,
+        this.textInputType=textInputType != TextInputType.none ?textInputType :TextInputType.text;
 
   final String label;
   final bool obscureText;
   final String model;
   final Function(String) onChange;
+  final TextInputType textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,7 @@ class TextInput extends StatelessWidget {
             onChanged: (value) {
               if(onChange != null)onChange(value);
             } ,
+            keyboardType: textInputType,
             style: TextStyle(color: ObjectColor.baseTextColor),
             obscureText: obscureText,
             decoration: InputDecoration(

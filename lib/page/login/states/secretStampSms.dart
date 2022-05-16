@@ -1,10 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_social_news/core/Widgets/counDown.dart';
-import 'package:flutter_social_news/core/Widgets/hederTitle.dart';
-import 'package:flutter_social_news/core/Widgets/textInputBorder.dart';
-import 'package:flutter_social_news/core/apiModel.dart' as apiModel;
+import 'package:flutter_social_news/core/Widgets/TextInput.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_social_news/core/bloc/events.dart';
 import 'package:flutter_social_news/core/model/chengState.dart';
@@ -12,11 +8,10 @@ import 'package:flutter_social_news/core/model/enums.dart';
 import 'package:flutter_social_news/helper/appPropertis.dart';
 import 'package:flutter_social_news/helper/objectColor.dart';
 import 'package:flutter_social_news/helper/textStyle.dart';
-import 'package:flutter_social_news/page/main/events.dart';
+import 'package:flutter_social_news/core/model/languageEnums.dart';
+import 'package:flutter_social_news/helper/language.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_social_news/core/model/message.dart' as msgModel;
-
-
+import 'package:flutter_social_news/page/main/events.dart';
 import '../obj.dart';
 
 class secretStampSms extends StatelessWidget{
@@ -24,56 +19,51 @@ class secretStampSms extends StatelessWidget{
   final Obj obj;
 
   Widget build(BuildContext context) {
-    return Column(children: [
-      HederTitle(img: "assets/img/b2.jpg",title: 'سامانه جامع کارمند ایران',),
-      Container(
-          padding: const EdgeInsets.only(top: 0.0, right: 10.0, bottom: 2.0, left: 10.0), child:
+
+    return
       Column(children: [
-        Center(child: Text('رمز عبور موقت برای شما ارسال گردید.',style: Style.h4(fontWeight:FontWeight.bold ),),),
-
-        new TextInputBorder('رمز عبور موقت',hintLabel:'- - - - - -',textInputType: TextInputType.number,model: obj.loginModel.SecurityStamp,onChange: (x)=> obj.loginModel.SecurityStamp = x),
-        CounDown(seconds: 120,label:'زمان باقی مانده'),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child:
-          ElevatedButton(
-
-            child:
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child:Center( child:Text('ورود به پلتفرم',)),
-            ),
-            onPressed: ()=>  checkUser(),
+        new TextInput(Language.get(Textuality.SecurityCode),textInputType: TextInputType.number,model: obj.loginModel.CellPhone,onChange: (x)=> obj.loginModel.CellPhone = x,),
+        Container(
+          constraints: BoxConstraints( maxWidth: 400),
+          padding: EdgeInsets.all(12),
+          margin: EdgeInsets.all(5),
+          child:ElevatedButton(
+            child: Center( child:Text(Language.get(Textuality.Login),)),
+            onPressed: ()=> getToken(),
             style: ElevatedButton.styleFrom(
-              primary: BaseColor,
+              primary: ObjectColor.base,
               textStyle: Style.h4(color: Colors.white),
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child:
-          ElevatedButton(
-            child:
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child:Center( child:Text('انصراف',style:  Style.h4(color:BaseColor), )),
-            ),
-            onPressed: ()=> {streamChengState.add(new ChengState(StateType.Main))},
+        Container(
+          constraints: BoxConstraints( maxWidth: 400),
+          padding: EdgeInsets.all(12),
+          margin: EdgeInsets.all(5),
+          child:ElevatedButton(
+            child: Center( child:Text(Language.get(Textuality.ComingBack),style: Style.h4())),
+            onPressed: ()=>streamChengState.add(new ChengState(StateType.Main, navigationsAdd: false,getList: false)),
             style: ElevatedButton.styleFrom(
-              primary: BaseBackground,
+              primary: white,
               textStyle: Style.h4(color: Colors.white),
             ),
           ),
         ),
-      ])
-      ),
-    ]);
+      ]);
   }
-
-  Future<void> checkUser() async {
+  Future<void> getToken() async {
+    AppPropertis.accessToken = 'value';
+    checkLogin();
   }
 
   Future<void> checkLogin() async {
+    SharedPreferences local = await SharedPreferences.getInstance();
+
+    local.setString("currentUser", jsonEncode(AppPropertis.currentUser));
+    local.setString("accessToken", jsonEncode(AppPropertis.accessToken));
+
+    loginController.add(LoginType.Enter);
+    streamLoad.add(null);
   }
+
 }

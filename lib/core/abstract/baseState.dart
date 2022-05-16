@@ -65,6 +65,12 @@ abstract class BaseState<T extends BaseStatefulWidget> extends State<T> {
   @mustCallSuper
   void changeState(ChengState value){
 
+    if(value.stateType != null && stateType != null && value.stateType == StateType.None) {
+      value.navigationsAdd = false;
+      value.getList = false;
+      value.stateType = stateType;
+    }
+
     if(value.navigationsAdd == false)
       navigationsAdd = false;
 

@@ -37,7 +37,7 @@ class CardVertical2 extends StatelessWidget{
             Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
-                color: hederCocor !=null? hederCocor: BaseColor,
+                color: hederCocor !=null? hederCocor: ObjectColor.base,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5)),
               ),
               child: Padding(
@@ -60,7 +60,7 @@ class CardVertical2 extends StatelessWidget{
       return
         Padding(
           padding: const EdgeInsets.all(7.0),
-          child:Text(text, style: Style.h5(color: TextColor),)
+          child:Text(text, style: Style.h5(color: ObjectColor.baseTextColor),)
         );
     else if(mainObj != null)
     return
@@ -95,7 +95,7 @@ class CardVertical2 extends StatelessWidget{
               return btnOnPressed();
           },
           style: ElevatedButton.styleFrom(
-            primary: BaseColor,
+            primary: ObjectColor.base,
             textStyle: Style.h4(color: Colors.white),
           ),
         ),

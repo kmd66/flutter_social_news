@@ -110,10 +110,13 @@ class ApplicationSurveyQuestionChoice extends Model{
   DateTime CreationDate;
   ApplicationSurveyQuestionChoice();
   // ignore: non_constant_identifier_names
-  ApplicationSurveyQuestionChoice.setProperty({this.RemoverPositionID,this.QuestionID,this.Name,this.QuestionName,this.RemoveDate,this.Enable,this.Total,this.ID,this.CreationDate});
+  ApplicationSurveyQuestionChoice.setProperty({this.RemoverPositionID,this.QuestionID,this.Name,this.QuestionName,
+    this.RemoveDate,this.Enable,this.Total,this.ID,this.CreationDate});
   @override
-  ApplicationSurveyQuestionChoice.fromJson(Map<String, dynamic> json):RemoverPositionID = json['RemoverPositionID'],QuestionID = json['QuestionID'],Name = json['Name'],QuestionName = json['QuestionName'],RemoveDate = AppDateTime.stringToDateTime(json['RemoveDate']),Enable = json['Enable'],Total = json['Total'],ID = json['ID'],CreationDate = AppDateTime.stringToDateTime(json['CreationDate']);
-  Map<String, dynamic> toJson() =>{'RemoverPositionID' : RemoverPositionID,'QuestionID' : QuestionID,'Name' : Name,'QuestionName' : QuestionName,'RemoveDate' : RemoveDate.toString(),'Enable' : Enable,'Total' : Total,'ID' : ID,'CreationDate' : CreationDate.toString()};
+  ApplicationSurveyQuestionChoice.fromJson(Map<String, dynamic> json):RemoverPositionID = json['RemoverPositionID'],
+        QuestionID = json['QuestionID'],Name = json['Name'],QuestionName = json['QuestionName'],RemoveDate = AppDateTime.stringToDateTime(json['RemoveDate']),Enable = json['Enable'],Total = json['Total'],ID = json['ID'],CreationDate = AppDateTime.stringToDateTime(json['CreationDate']);
+  Map<String, dynamic> toJson() =>{'RemoverPositionID' : RemoverPositionID,'QuestionID' : QuestionID,
+    'Name' : Name,'QuestionName' : QuestionName,'RemoveDate' : RemoveDate.toString(),'Enable' : Enable,'Total' : Total,'ID' : ID,'CreationDate' : CreationDate.toString()};
 }
 class ApplicationSurveyParticipant extends Model{
   // ignore: non_constant_identifier_names

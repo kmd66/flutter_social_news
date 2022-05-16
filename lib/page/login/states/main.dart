@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/Widgets/hederTitle.dart';
-import 'package:flutter_social_news/core/Widgets/textInputBorder.dart';
+import 'package:flutter_social_news/core/Widgets/TextInput.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_social_news/core/bloc/events.dart';
 import 'package:flutter_social_news/core/model/chengState.dart';
@@ -11,6 +11,8 @@ import 'package:flutter_social_news/helper/objectColor.dart';
 import 'package:flutter_social_news/helper/textStyle.dart';
 
 
+import 'package:flutter_social_news/core/model/languageEnums.dart';
+import 'package:flutter_social_news/helper/language.dart';
 import '../obj.dart';
 
 class Main extends StatelessWidget{
@@ -18,39 +20,28 @@ class Main extends StatelessWidget{
   final Obj obj;
 
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-          padding: const EdgeInsets.only(top: 0.0, right: 10.0, bottom: 2.0, left: 10.0), child:
+    return
       Column(children: [
-        Center(child: Text('خوش آمدید!',style: Style.h3(fontWeight:FontWeight.bold ),),),
-        Text('همکار گرامی، شما می توانید با وارد کردن کد ملی و شماره موبایل خود و دریافت رمز عبور موقت، وارد پنل کاربری خود شوید.',style: Style.h5(),),
-        new TextInputBorder('کد ملی',textInputType: TextInputType.number,hintLabel:'کد ملی خود را وارد کنید',modelLabel:'UserName', model: obj.loginModel.username,onChange: (x)=> obj.loginModel.username = x,),
-        new TextInputBorder('تلفن همراه',textInputType: TextInputType.number,hintLabel:'تلفن همراه خود را وارد کنید',model: obj.loginModel.CellPhone,onChange: (x)=> obj.loginModel.CellPhone = x,),
-
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child:
-          ElevatedButton(
-
-            child:
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child:Center( child:Text('دریافت رمز عبور موقت',)),
-            ),
-            onPressed: ()=> checkUser(),
+        new TextInput(Language.get(Textuality.PhoneNumber),textInputType: TextInputType.number,model: obj.loginModel.CellPhone,onChange: (x)=> obj.loginModel.CellPhone = x,),
+        Container(
+          constraints: BoxConstraints( maxWidth: 400),
+          padding: EdgeInsets.all(12),
+          margin: EdgeInsets.symmetric(vertical: 12 ,horizontal: 5),
+          child:ElevatedButton(
+            child: Center( child:Text(Language.get(Textuality.GetSecurityCode),)),
+            onPressed: ()=> getSecurityCode(),
             style: ElevatedButton.styleFrom(
-              primary: BaseColor,
+              primary: ObjectColor.base,
               textStyle: Style.h4(color: Colors.white),
             ),
           ),
         ),
-      ])
-      ),
-    ]);
+      ]);
   }
 
-  Future<void> checkUser() async {
-
+  Future<void> getSecurityCode() async {
+    print('SecretStampSms');
+    streamChengState.add(new ChengState(StateType.SecretStampSms, navigationsAdd: false,getList: false));
   }
 
 }

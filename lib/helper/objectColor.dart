@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/model/enums.dart';
 
-const Color BaseColor = Color.fromRGBO(6,24,88, 1.0);
-const Color TextColor = Color.fromRGBO(70,70,70, 1.0);
-const Color BaseBackground = Color.fromRGBO(255 ,255, 255, 1.0);
-const Color CardBackground = Color.fromRGBO(250, 250, 250, 1.0);
-
-const Color Color1 = Color.fromRGBO(238 ,238 ,238, 1.0);
-const Color Color2 = Color.fromRGBO(217 ,217 ,217, 1.0);
+const Color white = Color.fromRGBO(255 ,255, 255, 1.0);
 
 class ObjectColor {
   static ColerType colerType = ColerType.Cyan;
@@ -16,7 +10,7 @@ class ObjectColor {
   static Color get base => _base();
   static Color get baseTextColor => _baseTextColor();
   static Color get baseBackground => _baseBackground();
-  static Color get cardBackground => CardBackground;
+  static Color get cardBackground => _cardBackground();
 
   static Color get baseIcon => _baseIcon();
   static Color get baseBorderButton => _baseBorderButton();
@@ -26,13 +20,58 @@ class ObjectColor {
 
 
   static Color _base() {
-    return BaseColor;
+    switch (colerType) {
+      case ColerType.Red:
+        return Color.fromRGBO(239, 83, 80, 1);
+      case ColerType.Orange:
+        return Color.fromRGBO(255, 112, 67, 1);
+      case ColerType.Blue:
+        return  Color.fromRGBO(66, 165, 245, 1);
+      case ColerType.Teal:
+        return Color.fromRGBO(38, 166, 154, 1);
+      case ColerType.Pink:
+        return Color.fromRGBO(236, 64, 122, 1);
+      case ColerType.Green:
+        return  Color.fromRGBO(102, 187, 106, 1);
+      case ColerType.LightGreen:
+        return  Color.fromRGBO(174, 213, 129, 1);
+      case ColerType.Violet:
+        return   Color.fromRGBO(171, 71, 189, 1);
+      case ColerType.Purole:
+        return  Color.fromRGBO(126 ,87 ,194, 1);
+      case ColerType.Yellow:
+        return   Color.fromRGBO(255 ,179 ,0, 1);
+      case ColerType.Indigo:
+        return Color.fromRGBO(63 ,81 ,181, 1) ;
+      case ColerType.BlueGrey:
+        return  Color.fromRGBO(120 ,144 ,156, 1);
+      case ColerType.Brown:
+        return  Color.fromRGBO(141 ,110 ,99, 1)  ;
+      case ColerType.Cyan:
+        return Color.fromRGBO(0, 188, 212, 1.0);
+    }
+
+    return Color.fromRGBO(0,0,0, 1.0);
   }
   static Color _baseTextColor() {
-    return Color.fromRGBO(5,55,180, 1.0);
+    switch (nightType) {
+      case NightType.Dark:
+        return Color.fromRGBO(208, 208, 208, 1.0);
+      case NightType.Bright:
+        return Color.fromRGBO(108 ,117, 125, 1.0);
+    }
+
+    return Color.fromRGBO(0,0,0, 1.0);
   }
   static Color _baseBackground() {
-    return BaseBackground;
+    switch (nightType) {
+      case NightType.Dark:
+        return Color.fromRGBO(55 ,71, 79,1);
+      case NightType.Bright:
+        return Color.fromRGBO(245 ,245, 245, 1.0);
+    }
+
+    return Color.fromRGBO(0,0,0, 1.0);
   }
   static Color _cardBackground() {
     switch (nightType) {
