@@ -56,18 +56,18 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
           child:
           Column(
             children: [
-              Container(
-                transform: Matrix4.translationValues(0.0, -60, 0.0),
-                child:
-                ClipOval(
-                  child: Image.asset(
-                    'assets/img/profile_picture.jpg',
-                    height: 120,
-                    width: 120,
-                    fit: BoxFit.fill,
-                  ),
-                ),
-              ),
+              // Container(
+              //   transform: Matrix4.translationValues(0.0, -60, 0.0),
+              //   child:
+              //   ClipOval(
+              //     child: Image.asset(
+              //       'assets/img/profile_picture.jpg',
+              //       height: 120,
+              //       width: 120,
+              //       fit: BoxFit.fill,
+              //     ),
+              //   ),
+              // ),
               Container(
                 transform: Matrix4.translationValues(0.0, -50, 0.0),
                 child: Text('اسم و فامیل',style: Style.h4()),

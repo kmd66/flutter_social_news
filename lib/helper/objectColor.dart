@@ -66,9 +66,9 @@ class ObjectColor {
   static Color _baseBackground() {
     switch (nightType) {
       case NightType.Dark:
-        return Color.fromRGBO(55 ,71, 79,1);
+        return Color.fromRGBO(55 ,71, 79, 1);
       case NightType.Bright:
-        return Color.fromRGBO(245 ,245, 245, 1.0);
+        return Color.fromRGBO(247, 248, 250, 1.0);
     }
 
     return Color.fromRGBO(0,0,0, 1.0);

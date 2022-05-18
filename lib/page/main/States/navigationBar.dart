@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
+import '../../../helper/menu.dart';
 import '../events.dart';
 
 class NavigationBarPage extends StatefulWidget implements PreferredSizeWidget{
@@ -57,11 +58,22 @@ class _NavigationBar extends State<NavigationBarPage>{
               ]
           ),
           child: Row(
-            children: [
-              BottomNavigationBarButton(
-                  title: 'پروفایل',
-                  onPress: ()=> context.read<RouteBloc>().chengView(RouteList.PofilePage)),
-            ],
+            children:
+            // [
+            //   BottomNavigationBarButton(
+            //       btnIcon: Icons.home,
+            //       title: 'صفحه اصلی',
+            //       onPress: ()=> context.read<RouteBloc>().chengView(RouteList.HomePage)),
+            //   BottomNavigationBarButton(
+            //     btnIcon: Icons.app_blocking_outlined,
+            //     title: 'درباره ما',
+            //     onPress: ()=>context.read<RouteBloc>().chengView(RouteList.AboutPage),),
+            //   BottomNavigationBarButton(
+            //     btnIcon: Icons.menu,
+            //     title: ' ما',
+            //     onPress: ()=>context.read<MenuBloc>().chengView(MenuList.Main),),
+            // ],
+            listmenu(context) ,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
           ),
 
@@ -73,5 +85,20 @@ class _NavigationBar extends State<NavigationBarPage>{
   void dispose() {
     chengStateNavigationBarController.close();
     super.dispose();
+  }
+  List<Widget> listmenu(BuildContext context) {
+    List<Widget> list = [];
+    NaveMenu.map((x) =>
+        list.add(
+            BottomNavigationBarButton(
+              btnIcon: x.icon,
+              title: x.title,
+              onPress: ()=> x.route != null ?
+              context.read<RouteBloc>().chengView(x.route )
+              : context.read<MenuBloc>().chengView(x.menu)
+            )
+        )
+    ).toList();
+    return list;
   }
 }

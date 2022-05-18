@@ -43,7 +43,7 @@ class _BodyMainPage extends State<BodyMainPage>{
   void startTimer() {
     Timer.periodic(const Duration(milliseconds: 1000), (timer) {
       _scrollListener=true;
-      if(_scrollTop || _scrollBottom || _scrollController.position.maxScrollExtent < 130)
+      if(_scrollTop || _scrollBottom || SizeConfig.sizeType == SizeType.Lg || _scrollController.position.maxScrollExtent < 130)
         _scrollHide = 3;
       else {
         if(_scrollHide == 0){
