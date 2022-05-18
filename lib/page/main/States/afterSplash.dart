@@ -66,7 +66,6 @@ class _AfterSplash extends State<AfterSplash> {
   @override
   Widget build(BuildContext context) {
     return view();
-
   }
 
   @override
@@ -113,7 +112,6 @@ class _AfterSplash extends State<AfterSplash> {
                 return Future.value(false);
               })
       );
-
   }
 
   void navigation() {

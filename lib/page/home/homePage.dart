@@ -10,6 +10,7 @@ import 'package:flutter_social_news/core/model/message.dart' as msgModel;
 import 'package:flutter_social_news/core/apiModel.dart' as apiModel;
 import 'package:provider/src/provider.dart';
 
+import '../../core/Widgets/hr.dart';
 import '../../helper/appPropertis.dart';
 import '../../helper/sizeConfig.dart';
 
@@ -35,6 +36,14 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    return
+      Column(children: [
+        HrText(height: 10.0,label: 'رنگ اشیا',lineColor:ObjectColor.baseTextColor ,),
+        respanse(context)
+      ]);
+  }
+
+  Widget respanse(BuildContext context) {
     return
 
       Column(children: [
@@ -64,7 +73,9 @@ class _HomePage extends State<HomePage> {
               builder: (BuildContext context, BoxConstraints constraints) {
                 return Wrap
                   (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,md: WidthType.w2,lg: WidthType.w3) ,decoration: BoxDecoration(color: Colors.blue)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
+                      width:SizeConfig.init(constraints.maxWidth,md: WidthType.w2,lg: WidthType.w3)
+                      ,decoration: BoxDecoration(color: Colors.blue)),
                   Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: WidthType.w1,md: WidthType.w2,lg: WidthType.w3) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
                   Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: WidthType.w1,md: WidthType.w2,lg: WidthType.w3) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
                 ]);
@@ -200,7 +211,6 @@ class _HomePage extends State<HomePage> {
 
           ),
         ),
-
         Container(
           margin:const EdgeInsets.symmetric(vertical: 20.0),
           decoration: BoxDecoration(color: Colors.red,),
@@ -217,7 +227,6 @@ class _HomePage extends State<HomePage> {
 
           ),
         ),
-
         Container(
           margin:const EdgeInsets.symmetric(vertical: 20.0),
           decoration: BoxDecoration(color: Colors.red,),
@@ -251,7 +260,6 @@ class _HomePage extends State<HomePage> {
 
           ),
         ),
-    ]);
+      ]);
   }
-
 }

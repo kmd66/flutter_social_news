@@ -4,7 +4,7 @@ import 'package:flutter_social_news/core/model/enums.dart';
 const Color white = Color.fromRGBO(255 ,255, 255, 1.0);
 
 class ObjectColor {
-  static ColerType colerType = ColerType.Cyan;
+  static ColerType colerType = ColerType.Blue;
   static NightType nightType = NightType.Dark;
 
   static Color get base => _base();

@@ -57,9 +57,9 @@ class _AppBarMainPage extends State<AppBarMainPage>{
               Container(
                 margin: const EdgeInsets.all(10.0),
                 child:
-                Image.asset(
-                  "assets/logo.png",
-                  fit: BoxFit.fitWidth,
+                IconButton(
+                  onPressed:()=>context.read<MenuBloc>().chengView(MenuList.Setting),
+                  icon: Icon(Icons.settings),
                 ),
               ),
             ]
