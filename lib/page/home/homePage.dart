@@ -11,6 +11,7 @@ import 'package:flutter_social_news/core/apiModel.dart' as apiModel;
 import 'package:provider/src/provider.dart';
 
 import '../../helper/appPropertis.dart';
+import '../../helper/sizeConfig.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -35,59 +36,20 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return
-      Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child:
-              Text(
-                'پرکاربردها',
-                style: Style.h4(fontWeight: FontWeight.bold, color: ObjectColor.base),
-              ),
-            ),
-            Row(children: [
-              CardIcon(
-                title: 'فیش حقوق',
-                icon: 'assets/img/Vector01.png',
-                width:  (MediaQuery.of(context).size.width / 3) - 15,
-                iconSize: 36,
-              )
-              ,CardIcon(
-                icon: 'assets/img/Vector02.png',
-                width:  (MediaQuery.of(context).size.width / 3),
-                iconSize: 36,
-                title: 'رمز پویا',
-                onPress: ()=> context.read<RouteBloc>().chengView(RouteList.DynamicPasswordPage),
-              )
-              ,CardIcon(
-                icon: 'assets/img/Vector03.png',
-                width:  (MediaQuery.of(context).size.width / 3) - 15,
-                iconSize: 36,
-                title: 'حکم حقوق',
-              ),
-            ],),
-            AppPropertis.isAndroid ?
-            CardIcon(
-              icon: 'assets/img/Vector03.png',
-              width:  (MediaQuery.of(context).size.width / 3) - 15,
-              iconSize: 36,
-              title: 'اسکن QR',
-            ): Container(width: 0,height: 0,),
-            
-            Container(
-              margin: const  EdgeInsets.only(top: 20) ,
-              width: MediaQuery.of(context).size.width,
-              child:
-              Text(
-                'آخرین اطلاعیه ها',
-                style: Style.h4(fontWeight: FontWeight.bold, color: ObjectColor.base),
-              ),
-            ),
-            CardVertical(imgUrl: 'assets/login.png',title: 'دریافت حکم حقوقی از سامانه'),
+      Container(
+        decoration: BoxDecoration(color: Colors.red,),
+        child:
+        new LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              return Wrap
+                (children: [
+                Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,md: WidthType.w2,lg: WidthType.w3) ,decoration: BoxDecoration(color: Colors.blue)),
+                Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: WidthType.w1,md: WidthType.w2,lg: WidthType.w3) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: WidthType.w1,md: WidthType.w2,lg: WidthType.w3) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+              ]);
+            }
 
-          ]
+        ),
       );
   }
 

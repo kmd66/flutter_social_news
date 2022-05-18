@@ -12,6 +12,9 @@ class AfterSplashBloc with ChangeNotifier, DiagnosticableTreeMixin {
   bool _isVisibleNavigationBar = false;
   bool get isVisibleNavigationBar => _isVisibleNavigationBar;
 
+  bool _isShowNavigationBar = false;
+  bool get isShowNavigationBar => _isShowNavigationBar;
+
   bool _isVisibleBody = false;
   bool get isVisibleBody => _isVisibleBody;
 
@@ -20,6 +23,7 @@ class AfterSplashBloc with ChangeNotifier, DiagnosticableTreeMixin {
     _isVisibleAppBar = isVisibleAppBar;
     _isVisibleNavigationBar = isVisibleNavigationBar;
     _isVisibleBody = isVisibleBody;
+
     if(isVisibleAppBar == true)
       _heightAppBar = 150;
     else
@@ -53,5 +57,12 @@ class AfterSplashBloc with ChangeNotifier, DiagnosticableTreeMixin {
 
     if(chengStateBodyController != null )
       chengStateBodyController.add(null);
+  }
+
+  void showNavigationBar(bool isShowNavigationBar ) {
+    _isShowNavigationBar = isShowNavigationBar;
+
+    if(chengStateNavigationBarController != null )
+      chengStateNavigationBarController.add(null);
   }
 }

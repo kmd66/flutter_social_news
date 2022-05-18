@@ -9,7 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_social_news/core/Widgets/showObj.dart';
+import 'package:flutter_social_news/helper/sizeConfig.dart';
 import '../events.dart';
 
 class BodyMainPage extends StatefulWidget {
@@ -44,46 +45,44 @@ class _BodyMainPage extends State<BodyMainPage>{
   @override
   Widget build(BuildContext context) {
     RouteBloc bl = Provider.of<RouteBloc>(context, listen:true);
-
-    return context.watch<AfterSplashBloc>().isVisibleBody  ==  true?
-    Stack(
-      children: [
-        Scrollbar(
-          // isAlwaysShown: true,
-          controller: _scrollController, // <---- Here, the controller
-          child:RawScrollbar(
-            controller: _scrollController,
-            thumbColor:ObjectColor.shadowBackground(.6),
-            radius: Radius.circular(20),
-            thickness: 5,
-            child:
-          SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              controller: _scrollController, // <---- Same as the Scrollbar controller
-              child:
-              Center(
-                child:   Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    context.watch<AfterSplashBloc>().isVisibleAppBar  == true ?
-                    Container(height: 0,width: 0,):HederTitle(img: "assets/img/b1.jpg",title: bl.routeTitle,),
-                    Container(
-                        margin:const EdgeInsets.only(top: 30.0, right: 0.0, bottom: 20.0, left: 0.0),
-                        padding: const EdgeInsets.only(top: 25.0, right: 15, bottom: 10.0, left: 15.0),
-                        decoration: BoxDecoration(
-                          color: ObjectColor.baseBackground,
-                        ),
-                        child:bl.view
+    SizeConfig.context(context);
+    return
+      ShowObj(
+        isShow: context.watch<AfterSplashBloc>().isVisibleBody ,
+        obj:
+        Stack(
+          children: [
+            Scrollbar(
+              // isAlwaysShown: true,
+              controller: _scrollController, // <---- Here, the controller
+              child:RawScrollbar(
+                controller: _scrollController,
+                thumbColor:ObjectColor.shadowBackground(.6),
+                radius: Radius.circular(20),
+                thickness: 5,
+                child:
+                SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    controller: _scrollController, // <---- Same as the Scrollbar controller
+                    child:
+                    Center(
+                        child:Container(
+                            constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
+                            // margin:const EdgeInsets.symmetric(vertical: 20.0),
+                            padding: const EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                              color: ObjectColor.baseBackground,
+                            ),
+                            child:bl.view
+                        )
                     )
-                  ],
                 ),
-              )
-          ),
-          ),
+              ),
+            ),
+          ],
         ),
-      ],
-    ): Container(height: 0,width: 0,);
+      );
+
   }
 
   double width(double parentWidth) {
@@ -93,7 +92,7 @@ class _BodyMainPage extends State<BodyMainPage>{
       AppPropertis.bodyWidth = 320;
     else
       AppPropertis.bodyWidth = parentWidth;
-      return AppPropertis.bodyWidth;
+    return AppPropertis.bodyWidth;
   }
 
   @override

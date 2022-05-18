@@ -38,11 +38,11 @@ class _NavigationBar extends State<NavigationBarPage>{
   Widget build(BuildContext context) {
     AfterSplashBloc bl = Provider.of<AfterSplashBloc>(context, listen:true);
     isAppbar = !bl.isVisibleAppBar;
-    return bl.isVisibleNavigationBar == true ?
+    return bl.isVisibleNavigationBar && bl.isShowNavigationBar ?
     Container(
       constraints: BoxConstraints(minWidth: 320, maxWidth: AppPropertis.maxWidth, ),
       decoration: BoxDecoration(
-          color: Color.fromRGBO(5,23,84,1.0),
+          color: ObjectColor.cardBackground,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -57,31 +57,7 @@ class _NavigationBar extends State<NavigationBarPage>{
         children: [
           BottomNavigationBarButton(
               title: 'پروفایل',
-              btnIcon: 'assets/img/Vector04.png',
               onPress: ()=> context.read<RouteBloc>().chengView(RouteList.PofilePage)),
-          BottomNavigationBarButton(
-              title: 'فیش حقوق',
-              btnIcon: 'assets/img/Vector01.png',
-              onPress: ()=>{
-              }
-          ),
-          BottomNavigationBarButton(
-              title: 'صفحه اصلی',
-              onPress: ()=> context.read<RouteBloc>().chengView(RouteList.HomePage)
-          ),
-          BottomNavigationBarButton(
-              title: 'رمز پویا',
-              btnIcon: 'assets/img/Vector02.png',
-              onPress: ()=> context.read<RouteBloc>().chengView(RouteList.DynamicPasswordPage)
-            // onPress: ()=>context.read<AfterSplashBloc>().visible(isAppbar,true, true)
-          ),
-          BottomNavigationBarButton(
-              title: 'حکم حقوق',
-              btnIcon: 'assets/img/Vector03.png',
-              onPress: ()=>{
-              }
-            // onPress:()=>context.read<MenuBloc>().chengView(MenuList.Main),
-          ),
         ],
         mainAxisAlignment: MainAxisAlignment.spaceAround,
       ),
