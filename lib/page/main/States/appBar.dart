@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_social_news/core/bloc/afterSplashBloc.dart';
 import 'package:flutter_social_news/core/bloc/menuBloc.dart';
 import 'package:flutter_social_news/core/bloc/routeBloc.dart';
@@ -8,7 +7,7 @@ import 'package:flutter_social_news/helper/objectColor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import '../events.dart';
 
 
@@ -37,31 +36,35 @@ class _AppBarMainPage extends State<AppBarMainPage>{
 
   @override
   Widget build(BuildContext context) {
-    return context.watch<AfterSplashBloc>().isVisibleAppBar  == true ?
-    AppBar(
-        centerTitle: true,
-        backgroundColor: ObjectColor.base,
-        shadowColor:Colors.transparent,
-        title: Text(context.watch<RouteBloc>().routeTitle),
-        leading: Container(
-          margin: const EdgeInsets.only(top: 0, right: 10.0, bottom: 0, left: 10.0),
-          child:
-          IconButton(
-            onPressed: () =>widget.backPress(),
-            icon: Icon(Icons.arrow_back_ios),
-          ),
-        ),
-        actions: [
-          Container(
-            margin: const EdgeInsets.all(10.0),
-            child:
-            Image.asset(
-              "assets/logo.png",
-              fit: BoxFit.fitWidth,
+    return
+      ShowObj(
+        animat: true,
+        isShow: context.watch<AfterSplashBloc>().isVisibleAppBar && context.watch<AfterSplashBloc>().isScrolAppBar,
+        obj:AppBar(
+            centerTitle: true,
+            backgroundColor: ObjectColor.base,
+            shadowColor:Colors.transparent,
+            title: Text(context.watch<RouteBloc>().routeTitle),
+            leading: Container(
+              margin: const EdgeInsets.only(top: 0, right: 10.0, bottom: 0, left: 10.0),
+              child:
+              IconButton(
+                onPressed: () =>widget.backPress(),
+                icon: Icon(Icons.arrow_back_ios),
+              ),
             ),
-          ),
-        ]
-    ): Container(height: 0,width: 0,);
+            actions: [
+              Container(
+                margin: const EdgeInsets.all(10.0),
+                child:
+                Image.asset(
+                  "assets/logo.png",
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ]
+        ),
+      );
   }
 
   @override

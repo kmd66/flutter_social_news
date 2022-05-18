@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_social_news/core/Widgets/hederTitle.dart';
 import 'package:flutter_social_news/core/bloc/afterSplashBloc.dart';
 import 'package:flutter_social_news/core/bloc/routeBloc.dart';
@@ -22,6 +23,11 @@ class BodyMainPage extends StatefulWidget {
 
 class _BodyMainPage extends State<BodyMainPage>{
   final _scrollController =RouteBloc.scrollController;
+  Timer timer;
+  bool _scrollListener = true;
+  bool _scrollTop = true;
+  bool _scrollBottom = true;
+  double _scrollHide = 3;
 
   @override
   void initState() {
@@ -29,18 +35,68 @@ class _BodyMainPage extends State<BodyMainPage>{
     chengStateBodyController.stream.listen((value){
       setState(() {});
     });
-    _scrollController.addListener(() {
-      if (_scrollController.position.atEdge) {
-        if (_scrollController.position.pixels == 0) {
-          print('up');
-        } else {
-          print('do');
+    startTimer();
+    scroll();
+    super.initState();
+  }
 
+  void startTimer() {
+    Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+      _scrollListener=true;
+      if(_scrollTop || _scrollBottom || _scrollController.position.maxScrollExtent < 130)
+        _scrollHide = 3;
+      else {
+        if(_scrollHide == 0){
+          if (context.read<AfterSplashBloc>().isScrolAppBar || context.read<AfterSplashBloc>().isScrolAppBar){
+            context.read<AfterSplashBloc>().scrollVisible(false, false);_scrollListener=false;
+          }
         }
+        else _scrollHide--;
       }
+    });
+
+  }
+
+  void scroll() {
+    context.read<AfterSplashBloc>().scrollVisible(true, true);
+    _scrollController.addListener(() {
+
+      _scrollTop = false;
+      _scrollBottom = false;
+
+      if (_scrollController.position.atEdge) {
+        if (_scrollController.position.pixels == 0)
+          _scrollTop = true;
+        else
+          _scrollBottom = true;
+      }
+
+      if(!_scrollListener)
+        return;
+
+        if(!context.read<AfterSplashBloc>().isScrolAppBar)
+          context.read<AfterSplashBloc>().scrollVisible(true, true);
+
+      if(!_scrollTop && !_scrollBottom ){
+        _scrollHide = 3;
+
+        // if(_scrollController.offset + 120 < _scrollController.position.maxScrollExtent)
+        // if (!context.read<AfterSplashBloc>().isScrolAppBar)
+        //   context.read<AfterSplashBloc>().scrollVisible(true, true);
+        //
+        // if(_scrollController.position.userScrollDirection == ScrollDirection.forward
+        //     && _scrollController.position.userScrollDirection == ScrollDirection.reverse) {
+        //   if (context.read<AfterSplashBloc>().isScrolAppBar)
+        //     context.read<AfterSplashBloc>().scrollVisible(false, null);
+        //   if (!context.read<AfterSplashBloc>().isScrolNavigationBar)
+        //     context.read<AfterSplashBloc>().scrollVisible(null, true);
+        // }
+      }
+
     });
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +118,7 @@ class _BodyMainPage extends State<BodyMainPage>{
                 thickness: 5,
                 child:
                 SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
+                    // scrollDirection: Axis.vertical,
                     controller: _scrollController, // <---- Same as the Scrollbar controller
                     child:
                     Center(
@@ -98,6 +154,7 @@ class _BodyMainPage extends State<BodyMainPage>{
   @override
   void dispose() {
     chengStateBodyController.close();
+    timer?.cancel();
     super.dispose();
   }
 }

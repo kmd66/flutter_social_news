@@ -86,6 +86,9 @@ class ObjectColor {
   static Color shadowBackground(double opacity ) {
     return Color.fromRGBO(base.red,base.green,base.blue,opacity);
   }
+  static Color opacity(Color color, double opacity ) {
+    return Color.fromRGBO(color.red,color.green,color.blue,opacity);
+  }
   static Color _baseIcon() {
     switch (nightType) {
       case NightType.Dark:

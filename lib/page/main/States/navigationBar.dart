@@ -9,6 +9,7 @@ import 'package:flutter_social_news/helper/objectColor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import '../events.dart';
 
 class NavigationBarPage extends StatefulWidget implements PreferredSizeWidget{
@@ -38,31 +39,34 @@ class _NavigationBar extends State<NavigationBarPage>{
   Widget build(BuildContext context) {
     AfterSplashBloc bl = Provider.of<AfterSplashBloc>(context, listen:true);
     isAppbar = !bl.isVisibleAppBar;
-    return bl.isVisibleNavigationBar && bl.isShowNavigationBar ?
-    Container(
-      constraints: BoxConstraints(minWidth: 320, maxWidth: AppPropertis.maxWidth, ),
-      decoration: BoxDecoration(
-          color: ObjectColor.cardBackground,
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: ObjectColor.baseBorder2,
-                blurRadius: 0.0,
-                offset: Offset(0.0, 0.0),
-                spreadRadius: 1.0
-            ),
-          ]
-      ),
-      child: Row(
-        children: [
-          BottomNavigationBarButton(
-              title: 'پروفایل',
-              onPress: ()=> context.read<RouteBloc>().chengView(RouteList.PofilePage)),
-        ],
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-      ),
+    return
+      ShowObj(
+        animat: true,
+        isShow: bl.isVisibleNavigationBar && bl.isShowNavigationBar && bl.isScrolNavigationBar,
+        obj: Container(
+          decoration: BoxDecoration(
+              color: ObjectColor.cardBackground,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                    color: ObjectColor.baseBorder2,
+                    blurRadius: 0.0,
+                    offset: Offset(0.0, 0.0),
+                    spreadRadius: 1.0
+                ),
+              ]
+          ),
+          child: Row(
+            children: [
+              BottomNavigationBarButton(
+                  title: 'پروفایل',
+                  onPress: ()=> context.read<RouteBloc>().chengView(RouteList.PofilePage)),
+            ],
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ),
 
-    ): Container(height: 0,width: 0,);
+        ),
+      );
   }
 
   @override
