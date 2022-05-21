@@ -1,5 +1,6 @@
 import 'package:flutter_social_news/core/bloc/routeBloc.dart';
 import 'package:flutter_social_news/helper/objectColor.dart';
+import 'package:flutter_social_news/helper/sizeConfig.dart';
 import 'package:flutter_social_news/page/main/events.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class BottomNavigationBarButton extends StatelessWidget {
     if(isSelect == false && title == context.read<RouteBloc>().routeTitle)
       isSelect = true;
     return
-      isSelect == true?
+      isSelect == true && SizeConfig.sizeType != SizeType.Lg ?
       Container(
         transform: Matrix4.translationValues(0.0, -15, 0.0),
         height: 50,

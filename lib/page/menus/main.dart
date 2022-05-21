@@ -5,6 +5,7 @@ import 'package:flutter_social_news/core/bloc/routeBloc.dart';
 import 'package:flutter_social_news/core/model/enums.dart';
 import 'package:flutter_social_news/helper/appPropertis.dart';
 import 'package:flutter_social_news/helper/objectColor.dart';
+import 'package:flutter_social_news/helper/sizeConfig.dart';
 import 'package:flutter_social_news/helper/textStyle.dart';
 import 'package:flutter_social_news/page/main/events.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,7 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
     List<Widget> list = [];
     menuHelper.Menu.map((x)
     {
-      if(x.type == menuHelper.MenuType.Sid ){
+      if(x.type == menuHelper.MenuType.Sid){
         if(x.child != null)
         {
           List<Widget> child = [];
