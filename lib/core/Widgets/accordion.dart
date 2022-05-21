@@ -8,8 +8,9 @@ class Accordion extends StatefulWidget {
   final String label;
   final Widget obj;
   final IconData icon ;
+  final Color backgroundColor ;
 
-  const Accordion({Key key, this.label, this.obj, this.icon = Icons.home})
+  const Accordion({Key key, this.label, this.obj, this.icon = Icons.home, this.backgroundColor})
       : super(key: key);
   @override
   _AccordionState createState() => _AccordionState();
@@ -21,7 +22,7 @@ class _AccordionState extends State<Accordion> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: ObjectColor.cardBackground,
+      color: widget.backgroundColor != null ? widget.backgroundColor : ObjectColor.cardBackground,
       child: Column(children: [
         InkWell(
           onTap: (){setState(() {

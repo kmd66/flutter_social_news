@@ -59,20 +59,6 @@ class _NavigationBar extends State<NavigationBarPage>{
           ),
           child: Row(
             children:
-            // [
-            //   BottomNavigationBarButton(
-            //       btnIcon: Icons.home,
-            //       title: 'صفحه اصلی',
-            //       onPress: ()=> context.read<RouteBloc>().chengView(RouteList.HomePage)),
-            //   BottomNavigationBarButton(
-            //     btnIcon: Icons.app_blocking_outlined,
-            //     title: 'درباره ما',
-            //     onPress: ()=>context.read<RouteBloc>().chengView(RouteList.AboutPage),),
-            //   BottomNavigationBarButton(
-            //     btnIcon: Icons.menu,
-            //     title: ' ما',
-            //     onPress: ()=>context.read<MenuBloc>().chengView(MenuList.Main),),
-            // ],
             listmenu(context) ,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
           ),

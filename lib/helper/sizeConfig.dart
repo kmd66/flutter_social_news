@@ -25,6 +25,13 @@ class SizeConfig {
       context.read<AfterSplashBloc>().showNavigationBar(false);
     else if(sizeType != SizeType.Lg && !context.read<AfterSplashBloc>().isShowNavigationBar)
       context.read<AfterSplashBloc>().showNavigationBar(true);
+
+      if (_mediaQueryData.size.width < 576)
+        sizeType = SizeType.Sm;
+      else if (_mediaQueryData.size.width >= 576 && _mediaQueryData.size.width < 992)
+        sizeType = SizeType.Md;
+      else if (_mediaQueryData.size.width >= 992)
+        sizeType = SizeType.Lg;
   }
   static double init(double cw,{ int sm,int md,int lg}){
 
@@ -33,15 +40,14 @@ class SizeConfig {
     else
       screenWidth = _mediaQueryData.size.width;
 
-    if(_mediaQueryData.size.width < 576){
-      _sm(sm,md,lg);
-    }
-    else if(_mediaQueryData.size.width >=  768 && screenWidth < 992){
+    if(sizeType == SizeType.Md){
       _md(sm,md,lg);
     }
-    else if(_mediaQueryData.size.width >=  992){
+    else if(sizeType == SizeType.Lg){
       _lg(sm,md,lg);
     }
+    else
+      _sm(sm,md,lg);
 
     return width;
   }
@@ -66,7 +72,7 @@ class SizeConfig {
     if(_mediaQueryData.size.width < 576){
       _sm(ism,imd,ilg);
     }
-    else if(_mediaQueryData.size.width >=  768 && _mediaQueryData.size.width < 992){
+    else if(_mediaQueryData.size.width >=  576 && _mediaQueryData.size.width < 992){
       _md(ism,imd,ilg);
     }
     else if(_mediaQueryData.size.width >=  992){
@@ -77,7 +83,6 @@ class SizeConfig {
   }
 
   static _sm(int sm,int md,int lg){
-    sizeType = SizeType.Sm;
     if(sm == null ){
       if(md != null )
         width = _convert(md).floor().toDouble();
@@ -92,7 +97,6 @@ class SizeConfig {
   }
 
   static _md(int sm,int md,int lg){
-    sizeType = SizeType.Md;
     if(md == null ){
       if(lg != null )
         width = _convert(lg).floor().toDouble();
@@ -107,8 +111,6 @@ class SizeConfig {
   }
 
   static _lg(int sm,int md,int lg){
-
-    sizeType = SizeType.Lg;
     if(lg == null ){
       if(md != null )
         width = _convert(md).floor().toDouble();

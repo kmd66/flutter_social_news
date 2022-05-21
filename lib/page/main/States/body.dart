@@ -12,6 +12,7 @@ import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import 'package:flutter_social_news/helper/sizeConfig.dart';
+import '../../menus/main.dart';
 import '../events.dart';
 
 class BodyMainPage extends StatefulWidget {
@@ -74,8 +75,8 @@ class _BodyMainPage extends State<BodyMainPage>{
       if(!_scrollListener)
         return;
 
-        if(!context.read<AfterSplashBloc>().isScrolAppBar)
-          context.read<AfterSplashBloc>().scrollVisible(true, true);
+      if(!context.read<AfterSplashBloc>().isScrolAppBar)
+        context.read<AfterSplashBloc>().scrollVisible(true, true);
 
       if(!_scrollTop && !_scrollBottom ){
         _scrollHide = 3;
@@ -104,51 +105,68 @@ class _BodyMainPage extends State<BodyMainPage>{
     SizeConfig.context(context);
     return
       ShowObj(
-        isShow: context.watch<AfterSplashBloc>().isVisibleBody ,
-        obj:
-        Stack(
-          children: [
-            Scrollbar(
-              // isAlwaysShown: true,
-              controller: _scrollController, // <---- Here, the controller
-              child:RawScrollbar(
-                controller: _scrollController,
-                thumbColor:ObjectColor.shadowBackground(.6),
-                radius: Radius.circular(20),
-                thickness: 5,
-                child:
-                SingleChildScrollView(
-                    // scrollDirection: Axis.vertical,
-                    controller: _scrollController, // <---- Same as the Scrollbar controller
-                    child:
-                    Center(
-                        child:Container(
-                            constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
-                            // margin:const EdgeInsets.symmetric(vertical: 20.0),
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              color: ObjectColor.baseBackground,
-                            ),
-                            child:bl.view
-                        )
-                    )
-                ),
-              ),
-            ),
-          ],
-        ),
+          isShow: context.watch<AfterSplashBloc>().isVisibleBody ,
+          obj:Center(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
+                child:LayoutBuilder(
+                    builder: (BuildContext context, BoxConstraints constraints) {
+                      print(SizeConfig.sizeType);
+                      return Row(children: [
+                        SizeConfig.sizeType == SizeType.Lg ?
+                        Container(
+                          width:SizeConfig.init(constraints.maxWidth, lg: 3),
+                          child: MainMenuWidget(),
+                        ):Container(width: 0,height: 0,),
+                        Container(
+                          width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 12,lg: 9),
+                          child: main(context, bl),
+                        ),
+                      ],);
+                    }
+
+                ) ,
+              )
+          )
       );
 
   }
+  Widget main(BuildContext context, RouteBloc bl) {
+    return
+      Stack(
+        children: [
+          Scrollbar(
+            // isAlwaysShown: true,
+            controller: _scrollController, // <---- Here, the controller
+            child:RawScrollbar(
+              controller: _scrollController,
+              thumbColor:ObjectColor.shadowBackground(.6),
+              radius: Radius.circular(20),
+              thickness: 5,
+              child:
+              SingleChildScrollView(
+                // scrollDirection: Axis.vertical,
+                  controller: _scrollController, // <---- Same as the Scrollbar controller
+                  child:
+                  Center(
+                      child:Container(
+                          constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
+                          // margin:const EdgeInsets.symmetric(vertical: 20.0),
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                            color: ObjectColor.baseBackground,
+                          ),
+                          child:bl.view
+                      )
+                  )
+              ),
+            ),
+          ),
+        ],
+      );
 
-  double width(double parentWidth) {
-    if(parentWidth > AppPropertis.maxWidth)
-      AppPropertis.bodyWidth = AppPropertis.maxWidth;
-    else if(parentWidth < 320)
-      AppPropertis.bodyWidth = 320;
-    else
-      AppPropertis.bodyWidth = parentWidth;
-    return AppPropertis.bodyWidth;
   }
 
   @override

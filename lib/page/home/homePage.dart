@@ -64,6 +64,200 @@ class _HomePage extends State<HomePage> {
 
           ),
         ),
+
+
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
+        Container(
+          margin:const EdgeInsets.symmetric(vertical: 40.0),
+          decoration: BoxDecoration(color: Colors.red,),
+          child:
+          new LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Wrap
+                  (children: [
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
+                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
+                ]);
+              }
+
+          ),
+        ),
       ]);
   }
 }
