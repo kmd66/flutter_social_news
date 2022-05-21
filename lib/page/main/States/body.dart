@@ -113,7 +113,6 @@ class _BodyMainPage extends State<BodyMainPage>{
                 constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
                 child:LayoutBuilder(
                     builder: (BuildContext context, BoxConstraints constraints) {
-                      print(SizeConfig.sizeType);
                       return Row(children: [
                         SizeConfig.sizeType == SizeType.Lg ?
                         Container(

@@ -17,13 +17,17 @@ class ShowObj extends StatelessWidget{
       return Container(width: 0,height: 0,);
     if(animat)
       return
-        AnimatedSize(
-            duration: Duration(milliseconds: 300),
-            child: Container(
-              height: isShow? null : 0.0,
-              child: obj,
-            )
+        AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          child: !isShow
+              ? SizedBox()
+              : obj// more of the related code
         );
+        // AnimatedOpacity(
+        //   child: obj,
+        //   opacity: isShow ? 1.0 : 0.0,
+        //   duration: const Duration(milliseconds: 300),
+        // );
     else {
       if (isShow)
         return obj;
