@@ -3,20 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../core/bloc/afterSplashBloc.dart';
 
-enum SizeType {
-  Non,
-  Sm,
-  Md,
-  Lg
-}
-enum WidthType {
-  w1,
-  w2,
-  w3,
-  w4,
-  w5,
-  w6,
-}
 
 class SizeConfig {
   static SizeType sizeType = SizeType.Non;
@@ -40,8 +26,7 @@ class SizeConfig {
     else if(sizeType != SizeType.Lg && !context.read<AfterSplashBloc>().isShowNavigationBar)
       context.read<AfterSplashBloc>().showNavigationBar(true);
   }
-
-  static double init(double cw,{ WidthType sm,WidthType md, WidthType lg}){
+  static double init(double cw,{ int sm,int md,int lg}){
 
     if(cw != null )
       screenWidth = cw;
@@ -61,53 +46,105 @@ class SizeConfig {
     return width;
   }
 
-  static _sm(WidthType sm,WidthType md,WidthType lg){
+  static double init2(double cw,{ WidthType sm,WidthType md, WidthType lg}){
+
+    if(cw != null )
+      screenWidth = cw;
+    else
+      screenWidth = _mediaQueryData.size.width;
+    int ism;
+    int imd;
+    int ilg;
+
+    if(ism != null)
+      ism  = sm.index + 1;
+    if(imd != null)
+      imd  = md.index + 1;
+    if(ism != null)
+      ilg  = lg.index + 1;
+
+    if(_mediaQueryData.size.width < 576){
+      _sm(ism,imd,ilg);
+    }
+    else if(_mediaQueryData.size.width >=  768 && _mediaQueryData.size.width < 992){
+      _md(ism,imd,ilg);
+    }
+    else if(_mediaQueryData.size.width >=  992){
+      _lg(ism,imd,ilg);
+    }
+
+    return width;
+  }
+
+  static _sm(int sm,int md,int lg){
     sizeType = SizeType.Sm;
     if(sm == null ){
       if(md != null )
-        width = (screenWidth / _convert(md)).round().toDouble();
+        width = _convert(md).floor().toDouble();
       else if(lg != null )
-        width = (screenWidth / _convert(lg)).round().toDouble();
+        width = _convert(lg).floor().toDouble();
       else
         width = screenWidth;
     }
 
     else
-      width = (screenWidth / _convert(sm)).round().toDouble();
+      width = _convert(sm).floor().toDouble();
   }
 
-  static _md(WidthType sm,WidthType md,WidthType lg){
+  static _md(int sm,int md,int lg){
     sizeType = SizeType.Md;
     if(md == null ){
       if(lg != null )
-        width = (screenWidth / _convert(lg)).round().toDouble();
+        width = _convert(lg).floor().toDouble();
       else if(sm != null )
-        width = (screenWidth / _convert(sm)).round().toDouble();
+        width = _convert(sm).floor().toDouble();
       else
         width = screenWidth;
     }
 
     else
-      width = (screenWidth / _convert(md)).round().toDouble();
+      width = _convert(md).floor().toDouble();
   }
 
-  static _lg(WidthType sm,WidthType md,WidthType lg){
+  static _lg(int sm,int md,int lg){
+
     sizeType = SizeType.Lg;
     if(lg == null ){
       if(md != null )
-        width = (screenWidth / _convert(md)).round().toDouble();
+        width = _convert(md).floor().toDouble();
       else if(sm != null )
-        width = (screenWidth / _convert(sm)).round().toDouble();
+        width = _convert(sm).floor().toDouble();
       else
         width = screenWidth;
     }
 
     else
-      width = (screenWidth / _convert(lg)).round().toDouble();
+      width = _convert(lg).floor().toDouble();
   }
 
-  static int _convert(WidthType type){
-    return type.index + 1;
+  static double _convert(int i){
+    return (screenWidth * (8.333333333 * i)) / 100;
   }
 
+}
+
+enum SizeType {
+  Non,
+  Sm,
+  Md,
+  Lg
+}
+enum WidthType {
+  w1,
+  w2,
+  w3,
+  w4,
+  w5,
+  w6,
+  w7,
+  w8,
+  w9,
+  w10,
+  w11,
+  w12,
 }
