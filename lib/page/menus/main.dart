@@ -10,6 +10,9 @@ import 'package:flutter_social_news/page/main/events.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/Widgets/accordion.dart';
+import '../../helper/menu.dart' as menuHelper;
+
 
 class MainMenuWidget extends StatefulWidget {
   @override
@@ -72,6 +75,10 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
                 transform: Matrix4.translationValues(0.0, -50, 0.0),
                 child: Text('اسم و فامیل',style: Style.h4()),
               ),
+
+              Column(children: listmenu(context)),
+
+              Container(margin:EdgeInsets.only(bottom: 60) ,),
               MenuItem(label: 'صفحه اصلی',onPress:()=>itemPresseRoute(RouteList.HomePage)),
               MenuItem(label: 'درباره ما',onPress:()=>itemPresseRoute(RouteList.AboutPage)),
               MenuItem(label: 'خروج',margin:const EdgeInsets.only(top: 40),onPress:()
@@ -80,10 +87,45 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
                 loginController.add(LoginType.Exit);
               }
               ),
+
             ],
           ),
         ),)
       ],);
   }
 
+  List<Widget> listmenu(BuildContext context) {
+    List<Widget> list = [];
+    menuHelper.Menu.map((x)
+    {
+      if(x.type == menuHelper.MenuType.Sid ){
+        if(x.child != null)
+        {
+          List<Widget> child = [];
+          x.child.map((c){
+            child.add(MenuItem(label: c.title, icon: c.icon,
+                onPress:()=> c.route != null ?
+                itemPresseRoute(c.route): context.read<MenuBloc>().chengView(c.menu)
+                    ));
+          }).toList();
+          list.add(Accordion(
+              label:x.title,
+              icon: x.icon,
+              obj:Column(children:child,)
+          )
+          );
+        }
+        else{
+          list.add(
+              MenuItem(label: x.title, icon: x.icon,
+                  onPress:()=> x.route != null ?
+                  itemPresseRoute(x.route): context.read<MenuBloc>().chengView(x.menu)
+              )
+          );
+        }
+      }
+
+    }).toList();
+    return list;
+  }
 }

@@ -86,19 +86,22 @@ class _NavigationBar extends State<NavigationBarPage>{
     chengStateNavigationBarController.close();
     super.dispose();
   }
+
   List<Widget> listmenu(BuildContext context) {
     List<Widget> list = [];
-    NaveMenu.map((x) =>
+    Menu.map((x) =>
+    {
+      if(x.type == MenuType.Nav )
         list.add(
             BottomNavigationBarButton(
-              btnIcon: x.icon,
-              title: x.title,
-              onPress: ()=> x.route != null ?
-              context.read<RouteBloc>().chengView(x.route )
-              : context.read<MenuBloc>().chengView(x.menu)
+                btnIcon: x.icon,
+                title: x.title,
+                onPress: ()=> x.route != null ?
+                context.read<RouteBloc>().chengView(x.route )
+                    : context.read<MenuBloc>().chengView(x.menu)
             )
         )
-    ).toList();
+    }).toList();
     return list;
   }
 }
