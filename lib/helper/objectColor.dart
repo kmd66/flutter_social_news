@@ -2,6 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/model/enums.dart';
 
 const Color white = Color.fromRGBO(255 ,255, 255, 1.0);
+const Color black = Color.fromRGBO(0,0,0, 1.0);
+
+const Color dark = Color.fromRGBO(55 ,71, 79, 1);
+const Color bright = Color.fromRGBO(247, 248, 250, 1.0);
+
+const Color darkText = Color.fromRGBO(208, 208, 208, 1.0);
+const Color brightText = Color.fromRGBO(108 ,117, 125, 1.0);
+
+const Color darkCard = Color.fromRGBO(69 ,90, 100,1);
+const Color darkCard2 = Color.fromRGBO(34, 46, 53,1);
+const Color brightCard = Color.fromRGBO(255,255,255,1);
+const Color brightCard2 = Color.fromRGBO(205, 205, 205,1);
+
+
+const Color red = Color.fromRGBO(239, 83, 80, 1);
+const Color orange = Color.fromRGBO(255, 112, 67, 1);
+const Color blue = Color.fromRGBO(66, 165, 245, 1);
+const Color teal = Color.fromRGBO(38, 166, 154, 1);
+const Color pink = Color.fromRGBO(236, 64, 122, 1);
+const Color green = Color.fromRGBO(102, 187, 106, 1);
+const Color lightGreen = Color.fromRGBO(174, 213, 129, 1);
+const Color violet = Color.fromRGBO(171, 71, 189, 1);
+const Color purole = Color.fromRGBO(126 ,87 ,194, 1);
+const Color yellow = Color.fromRGBO(255 ,179 ,0, 1);
+const Color indigo = Color.fromRGBO(63 ,81 ,181, 1);
+const Color blueGrey = Color.fromRGBO(120 ,144 ,156, 1);
+const Color brown = Color.fromRGBO(141 ,110 ,99, 1);
+const Color cyan = Color.fromRGBO(0, 188, 212, 1.0);
 
 class ObjectColor {
   static ColerType colerType = ColerType.Blue;
@@ -17,48 +45,49 @@ class ObjectColor {
   static Color get baseBorder => _baseBorder();
   static Color get baseBorder2 => _baseBorder2();
   static Color get pupUpMenuBackground => _pupUpMenuBackground();
+  static Color get rightMenuBackground => nightType == NightType.Bright ?brightCard2:darkCard2;
 
 
   static Color _base() {
     switch (colerType) {
       case ColerType.Red:
-        return Color.fromRGBO(239, 83, 80, 1);
+        return red;
       case ColerType.Orange:
-        return Color.fromRGBO(255, 112, 67, 1);
+        return orange;
       case ColerType.Blue:
-        return  Color.fromRGBO(66, 165, 245, 1);
+        return blue ;
       case ColerType.Teal:
-        return Color.fromRGBO(38, 166, 154, 1);
+        return teal;
       case ColerType.Pink:
-        return Color.fromRGBO(236, 64, 122, 1);
+        return pink;
       case ColerType.Green:
-        return  Color.fromRGBO(102, 187, 106, 1);
+        return green;
       case ColerType.LightGreen:
-        return  Color.fromRGBO(174, 213, 129, 1);
+        return lightGreen;
       case ColerType.Violet:
-        return   Color.fromRGBO(171, 71, 189, 1);
+        return violet;
       case ColerType.Purole:
-        return  Color.fromRGBO(126 ,87 ,194, 1);
+        return purole;
       case ColerType.Yellow:
-        return   Color.fromRGBO(255 ,179 ,0, 1);
+        return yellow;
       case ColerType.Indigo:
-        return Color.fromRGBO(63 ,81 ,181, 1) ;
+        return indigo;
       case ColerType.BlueGrey:
-        return  Color.fromRGBO(120 ,144 ,156, 1);
+        return blueGrey;
       case ColerType.Brown:
-        return  Color.fromRGBO(141 ,110 ,99, 1)  ;
+        return brown;
       case ColerType.Cyan:
-        return Color.fromRGBO(0, 188, 212, 1.0);
+        return cyan;
     }
 
-    return Color.fromRGBO(0,0,0, 1.0);
+    return black;
   }
   static Color _baseTextColor() {
     switch (nightType) {
       case NightType.Dark:
-        return Color.fromRGBO(208, 208, 208, 1.0);
+        return darkText;
       case NightType.Bright:
-        return Color.fromRGBO(108 ,117, 125, 1.0);
+        return brightText;
     }
 
     return Color.fromRGBO(0,0,0, 1.0);
@@ -66,9 +95,9 @@ class ObjectColor {
   static Color _baseBackground() {
     switch (nightType) {
       case NightType.Dark:
-        return Color.fromRGBO(55 ,71, 79, 1);
+        return dark;
       case NightType.Bright:
-        return Color.fromRGBO(247, 248, 250, 1.0);
+        return bright;
     }
 
     return Color.fromRGBO(0,0,0, 1.0);
@@ -76,9 +105,9 @@ class ObjectColor {
   static Color _cardBackground() {
     switch (nightType) {
       case NightType.Dark:
-        return Color.fromRGBO(69 ,90, 100,1);
+        return darkCard;
       case NightType.Bright:
-        return Color.fromRGBO(255,255,255,1);
+        return brightCard;
     }
 
     return Color.fromRGBO(0,0,0, 1.0);

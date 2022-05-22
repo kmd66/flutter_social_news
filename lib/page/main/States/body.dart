@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import 'package:flutter_social_news/helper/sizeConfig.dart';
 import '../../menus/main.dart';
+import '../../menus/sideMain.dart';
 import '../events.dart';
 
 class BodyMainPage extends StatefulWidget {
@@ -117,7 +118,10 @@ class _BodyMainPage extends State<BodyMainPage>{
                         SizeConfig.sizeType == SizeType.Lg ?
                         Container(
                           width:SizeConfig.init(constraints.maxWidth, lg: 3),
-                          child: MainMenuWidget(),
+                          decoration: BoxDecoration(
+                            color: ObjectColor.rightMenuBackground,
+                          ),
+                          child: SideMain(),
                         ):Container(width: 0,height: 0,),
                         Container(
                           width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 12,lg: 9),
@@ -140,10 +144,11 @@ class _BodyMainPage extends State<BodyMainPage>{
             // isAlwaysShown: true,
             controller: _scrollController, // <---- Here, the controller
             child:RawScrollbar(
+              isAlwaysShown: true,
               controller: _scrollController,
-              thumbColor:ObjectColor.shadowBackground(.6),
+              thumbColor:ObjectColor.shadowBackground(.2),
               radius: Radius.circular(20),
-              thickness: 5,
+              thickness: 10,
               child:
               SingleChildScrollView(
                 // scrollDirection: Axis.vertical,
