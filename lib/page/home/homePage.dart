@@ -35,7 +35,13 @@ class _HomePage extends State<HomePage> {
     'http://localhost:8080/3.jpg',
     'http://localhost:8080/defaultImg.jpg',
     'http://localhost:8080/p.jpg',
-    'http://localhost:8080/iisstart.png'
+    'http://localhost:8080/iisstart.png',
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
   ];
   List<String> tex =[
     'er wger',

@@ -56,7 +56,16 @@ class Style {
   }
   static TextStyle h6({FontWeight fontWeight = FontWeight.normal, Color color, TextOverflow overflow}){
     return TextStyle(
-      overflow: overflow,
+        overflow: overflow,
+        fontWeight: fontWeight ,
+        fontSize:10,
+        fontFamily: 'Vazir',
+        color: color != null ? color: ObjectColor.baseTextColor
+    );
+  }
+  static TextStyle h7({FontWeight fontWeight = FontWeight.normal, Color color, TextOverflow overflow}){
+    return TextStyle(
+        overflow: overflow,
         fontWeight: fontWeight ,
         fontSize:8,
         fontFamily: 'Vazir',

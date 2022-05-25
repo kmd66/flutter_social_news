@@ -52,35 +52,52 @@ class _CardVertical extends State<CardVertical> {
         Card(
             color: ObjectColor.cardBackground,
             child:
-                Column(
-                  children: [
-                    Image.network(widget.imgUrl ,
-                      width: widget.width,
-                      height: (widget.width *9)/16,
-                      fit: BoxFit.fill,
-                    ),
-                    Container(
-                        padding: const EdgeInsets.all(12),
-                        width: widget.width,
-                        child: Text(widget.title,style: Style.h4(),)
-                    ),
-                    text(),
-                    Container(
-                      width: widget.width,
-                      padding: const EdgeInsets.only(bottom: 12,left: 12,right: 12),
-                      child:
+            Column(
+              children: [
+                hede(),
+                img(),
+
+                Container(
+                    padding: const EdgeInsets.all(12),
+                    width: widget.width,
+                    child: Text(widget.title,style: Style.h4(),)
+                ),
+                text(),
+                Container(
+                  width: widget.width,
+                  padding: const EdgeInsets.only(bottom: 12,left: 12,right: 12),
+                  child:
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        child: Text(widget.link,
+                          style: Style.h4(color:  ObjectColor.base),
+                        ),
+                        onPressed: () {
+                          if(widget.linkOnPressed!=null)
+                            widget.linkOnPressed();
+                        },
+                      ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          TextButton(
-                            child: Text(widget.link,
-                              style: Style.h4(color:  ObjectColor.base),
-                            ),
-                            onPressed: () {
-                              if(widget.linkOnPressed!=null)
-                                widget.linkOnPressed();
-                            },
-                          ),
+                          IconButton(
+                              icon: Icon(
+                                Icons.save_alt,
+                                size: 16,
+                                color: ObjectColor.baseIcon,), onPressed: (){
+                            if(widget.iconOnPressed!=null)
+                              widget.iconOnPressed();
+                          }),
+                          IconButton(
+                              icon: Icon(
+                                Icons.share,
+                                size: 16,
+                                color: ObjectColor.baseIcon,), onPressed: (){
+                            if(widget.iconOnPressed!=null)
+                              widget.iconOnPressed();
+                          }),
                           IconButton(
                               icon: Icon(
                                 widget.icon,
@@ -89,10 +106,47 @@ class _CardVertical extends State<CardVertical> {
                             if(widget.iconOnPressed!=null)
                               widget.iconOnPressed();
                           })
-                        ],),
-                    )
-                  ],)
+                        ],)
+                    ],),
+                )
+              ],)
         )
+    );
+  }
+
+  Widget hede() {
+    return   Container(
+        padding: const EdgeInsets.all(5),
+        child:
+        Row(
+          mainAxisAlignment:MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment:MainAxisAlignment.start,
+              children: [
+                ClipOval(
+                  child: Image.network('http://localhost:8080/defaultUser.jpg',
+                    height: 30,
+                    width: 30,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Padding(padding: EdgeInsets.all(5),
+                  child:
+                  Column(children: [
+                    Text('widget.text',style: Style.h6(overflow:TextOverflow.ellipsis ,color: ObjectColor.base),textAlign: TextAlign.justify,),
+                    Text('اسم صفحه',style: Style.h6(overflow:TextOverflow.ellipsis ,color: ObjectColor.baseTextColor),textAlign: TextAlign.justify,)
+                  ],) ,
+                )
+
+              ],),
+            IconButton(
+                icon: Icon(
+                  Icons.more_vert_outlined,
+                  size: 16,
+                  color: ObjectColor.baseIcon,),
+                onPressed: (){})
+          ],)
     );
   }
 
@@ -129,13 +183,25 @@ class _CardVertical extends State<CardVertical> {
                             Icons.expand_more_rounded,
                             size: 16,
                             color: ObjectColor.baseIcon,),
-                          onPressed: (){setState(()=>textOverFlow = true)
-                          ;
-                          print(textOverFlow);
+                          onPressed: (){setState(()=>textOverFlow = true);
                           })
                   )
               )
             ],)
+      );
+  }
+
+  Widget img() {
+    if(widget.imgUrl != null)
+      return Image.network(widget.imgUrl ,
+        width: widget.width,
+        height: (widget.width *9)/16,
+        fit: BoxFit.fill,
+      );
+    else
+      return   Container(
+        height: 0,
+        width: 0 ,
       );
   }
 }
