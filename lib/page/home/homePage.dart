@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_social_news/core/Widgets/card/cardIcon.dart';
 import 'package:flutter_social_news/core/Widgets/card/cardVertical.dart';
+import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import 'package:flutter_social_news/core/bloc/afterSplashBloc.dart';
 import 'package:flutter_social_news/core/bloc/routeBloc.dart';
 import 'package:flutter_social_news/core/model/enums.dart';
@@ -18,6 +19,7 @@ import '../../core/Widgets/imgSlide.dart';
 import '../../core/model/list.dart';
 import '../../helper/appPropertis.dart';
 import '../../helper/sizeConfig.dart';
+import 'homePageLeft.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -44,7 +46,7 @@ class _HomePage extends State<HomePage> {
     ' یک منبع را داشته و همچنین به  منظور ثبت /چنانچه قصد ثبت چند شکوائیه در یک منبع را داشته و همچنین به  منظور ثبت /شکوائیه شرکاء اشخاص حقیقی در هر یک از منابع (ارث، مشاغل، حق واگذاری، اجاره محل،آمد اتفاقی)  از گزینه «افزودن شکوائیه» استفاده نمایید.',
     ' یک منبع را داشته و همچنین به  منظور ثبت /چنانچه قصد ثبت چند شکوائیه در یک منبع را داشته و  شکوائیه» استفاده نمایید.',
   ];
-  List<List<keyValue>> list = [];
+  List<keyValue> list = [];
 
   @override
   void initState() {
@@ -64,40 +66,44 @@ class _HomePage extends State<HomePage> {
       LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints)
           {
-            var sizeCardVertical = SizeConfig.init(constraints.maxWidth, sm:12,md: 6);
+            var sizeCardVertical = SizeConfig.init(constraints.maxWidth, sm:12,md: 7);
+            var sizeLeft = SizeConfig.init(constraints.maxWidth, md: 5);
             var sizeCardIcon= SizeConfig.init(constraints.maxWidth, sm:6,md: 3);
             return
               Column(
                   children: [
-                    Container(
-                        margin: const EdgeInsets.all(10.0),
-                        child:ImgSlide(width: constraints.maxWidth - 10, height: 200,)
-                    ),
-
                 card(context,sizeCardIcon),
 
-                ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  controller: ScrollController(),
-                  shrinkWrap: true,
-                  itemCount: list.length,
-                  itemBuilder: (context, i) {
-                    return
-                      IntrinsicHeight(
-                        child:Wrap(
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children:
-                          list[i].map((item) =>
-                              CardVertical(
-                                  sizeCardVertical,
-                                  textHeight: 50,
-                                  imgUrl:item.key,
-                                  text: item.value
-                              )
-                          ).toList()
-                    ));
-                  },
-                ),
+                     Wrap(
+                       textDirection: TextDirection.ltr,
+                       alignment: WrapAlignment.spaceBetween,
+                       runAlignment:  WrapAlignment.spaceBetween,
+
+                       crossAxisAlignment:  WrapCrossAlignment.start,
+
+                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          HomePageLeft(constraints.maxWidth - 10,sizeLeft),
+                          Container(
+                            width: sizeCardVertical,
+                            child:
+                            ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              controller: ScrollController(),
+                              shrinkWrap: true,
+                              itemCount: list.length,
+                              itemBuilder: (context, i) {
+                                return
+                                  CardVertical(
+                                      sizeCardVertical,
+                                      textHeight: 50,
+                                      imgUrl:list[i].key,
+                                      text: list[i].value
+                                  );
+                              },
+                            ),
+                          ),
+                        ],),
 
                 Container(
                   margin: const EdgeInsets.all(15.0),
@@ -156,14 +162,14 @@ class _HomePage extends State<HomePage> {
   void listAdd() {
     Random re = new Random();
     for (double i = 0; i < 10; i++) {
-        list.add(
-            [
-              keyValue.setProperty(key: img[re.nextInt(img.length - 1)],
-                  value: tex[re.nextInt(tex.length - 1)]),
-              keyValue.setProperty(key: img[re.nextInt(img.length - 1)],
-                  value: tex[re.nextInt(tex.length - 1)])
-            ]
-        );
+      list.add(
+          keyValue.setProperty(key: img[re.nextInt(img.length - 1)],
+              value: tex[re.nextInt(tex.length - 1)])
+      );
+      list.add(
+          keyValue.setProperty(key: img[re.nextInt(img.length - 1)],
+              value: tex[re.nextInt(tex.length - 1)])
+      );
     }
   }
 
