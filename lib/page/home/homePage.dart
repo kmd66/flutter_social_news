@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_social_news/core/Widgets/card/cardIcon.dart';
 import 'package:flutter_social_news/core/Widgets/card/cardVertical.dart';
 import 'package:flutter_social_news/core/bloc/afterSplashBloc.dart';
@@ -12,6 +15,7 @@ import 'package:provider/src/provider.dart';
 
 import '../../core/Widgets/hr.dart';
 import '../../core/Widgets/imgSlide.dart';
+import '../../core/model/list.dart';
 import '../../helper/appPropertis.dart';
 import '../../helper/sizeConfig.dart';
 
@@ -23,9 +27,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   int i =0;
+  List<String> img =[
+    'http://localhost:8080/1.jpg',
+    'http://localhost:8080/2.jpg',
+    'http://localhost:8080/3.jpg',
+    'http://localhost:8080/defaultImg.jpg',
+    'http://localhost:8080/p.jpg',
+    'http://localhost:8080/iisstart.png'
+  ];
+  List<String> tex =[
+    'er wger',
+    ' یک منبع را داشته و همچنین به  منظور ثبت /چنانچه قصد ثبت چند شکوائیه در یک منبع را داشته و همچنین به  منظور ثبت /شکوائیه شرکاء اشخاص حقیقی در هر یک از منابع (ارث، مشاغل، حق واگذاری، اجاره محل،آمد اتفاقی)  از گزینه «افزودن شکوائیه» استفاده نمایید.',
+    ' یک منبع را داشته و همچنین به  منظور ثبت /چنانچه قصد ثبت چند شکوائیه در یک منبع را داشته و  شکوائیه» استفاده نمایید.',
+
+    'er wger',
+    ' یک منبع را داشته و همچنین به  منظور ثبت /چنانچه قصد ثبت چند شکوائیه در یک منبع را داشته و همچنین به  منظور ثبت /شکوائیه شرکاء اشخاص حقیقی در هر یک از منابع (ارث، مشاغل، حق واگذاری، اجاره محل،آمد اتفاقی)  از گزینه «افزودن شکوائیه» استفاده نمایید.',
+    ' یک منبع را داشته و همچنین به  منظور ثبت /چنانچه قصد ثبت چند شکوائیه در یک منبع را داشته و  شکوائیه» استفاده نمایید.',
+  ];
+  List<List<keyValue>> list = [];
 
   @override
   void initState() {
+    listAdd();
     context.read<AfterSplashBloc>().visible(true,true, true);
     super.initState();
   }
@@ -38,255 +61,110 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return
-      Column(children: [
-        HrText(height: 10.0,label: 'مطالب ویژه',lineColor:ObjectColor.baseTextColor ,),
-        Container(
-          margin: const EdgeInsets.all(10.0),
-          child:LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return
-                  ImgSlide(width: constraints.maxWidth-10 , height: 200,);
-              }
-          ),
-        ),
+      LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints)
+          {
+            var sizeCardVertical = SizeConfig.init(constraints.maxWidth, sm:12,md: 6);
+            var sizeCardIcon= SizeConfig.init(constraints.maxWidth, sm:6,md: 3);
+            return
+              Column(
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.all(10.0),
+                        child:ImgSlide(width: constraints.maxWidth - 10, height: 200,)
+                    ),
 
-        respanse(context)
-      ]);
+                card(context,sizeCardIcon),
+
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: ScrollController(),
+                  shrinkWrap: true,
+                  itemCount: list.length,
+                  itemBuilder: (context, i) {
+                    return
+                      IntrinsicHeight(
+                        child:Wrap(
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children:
+                          list[i].map((item) =>
+                              CardVertical(
+                                  sizeCardVertical,
+                                  textHeight: 50,
+                                  imgUrl:item.key,
+                                  text: item.value
+                              )
+                          ).toList()
+                    ));
+                  },
+                ),
+
+                Container(
+                  margin: const EdgeInsets.all(15.0),
+                  child:ElevatedButton(
+                    child: Center( child:Text('موارد بیشتر')),
+                    onPressed: ()=>setState(()=>listAdd()),
+                    style: ElevatedButton.styleFrom(
+                      primary: ObjectColor.base,
+                      textStyle: Style.h4(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ]);
+          });
+    // ListView.builder(
+    //   scrollDirection: Axis.vertical,
+    //   controller: ScrollController(),
+    //   shrinkWrap: true,
+    //   itemCount: imgList.length,
+    //   itemBuilder: (context, i) {
+    //     return CardVertical(
+    //         150,
+    //         imgUrl: imgList[i],
+    //         text:  imgList[i]
+    //     );
+    //   },
+    // );
   }
 
-  Widget respanse(BuildContext context) {
+  Widget card(BuildContext context,double size) {
     return
-
-      Column(children: [
-
-        Container(
-            height: 50,
-            child:
-            ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                  Container(width: 160.0,color: Colors.cyanAccent,),
-                  Container(width: 160.0,color: Colors.blue,),
-                  Container(width: 160.0,color: Colors.green,),
-                ]
-            )
+      Wrap(children: [
+        CardIcon(
+          title: '12',
+          icon: Icons.post_add,
+          width: size,
         ),
-
-
-
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
+        CardIcon(
+          title: '111',
+          icon: Icons.comment,
+          width: size,
         ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
+        CardIcon(
+          title: '54',
+          icon: Icons.heart_broken_outlined,
+          width: size,
         ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-        Container(
-          margin:const EdgeInsets.symmetric(vertical: 40.0),
-          decoration: BoxDecoration(color: Colors.red,),
-          child:
-          new LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return Wrap
-                  (children: [
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xF0F8FF00),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Color(0xB86B9700),)),
-                  Container(padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10), width:SizeConfig.init(constraints.maxWidth,sm: 12,md: 6,lg: 4) ,decoration: BoxDecoration(color: Colors.blue)),
-                ]);
-              }
-
-          ),
-        ),
-      ]);
+        CardIcon(
+          title: '87',
+          icon: Icons.tag,
+          width: size,
+        )
+      ],);
   }
+
+  void listAdd() {
+    Random re = new Random();
+    for (double i = 0; i < 10; i++) {
+        list.add(
+            [
+              keyValue.setProperty(key: img[re.nextInt(img.length - 1)],
+                  value: tex[re.nextInt(tex.length - 1)]),
+              keyValue.setProperty(key: img[re.nextInt(img.length - 1)],
+                  value: tex[re.nextInt(tex.length - 1)])
+            ]
+        );
+    }
+  }
+
 }

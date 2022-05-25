@@ -132,7 +132,7 @@ class _ImgSlide extends State<ImgSlide> {
                           ),
                         ),
                         Text('انتقاد یک سرباز سابق از دولت فرانسه به دلیل ارسال سلاح به اوکراین' ,
-                            style: TextStyle(
+                            style: Style.h5(
                                 overflow:TextOverflow.ellipsis ,
                                 color: ObjectColor.baseTextColor
                             )
@@ -141,7 +141,7 @@ class _ImgSlide extends State<ImgSlide> {
                     ) ,
                   ),
                   Container(width: widthImg(),
-                    margin: const EdgeInsets.symmetric(horizontal: 25.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 10.0),
                     child:InkWell(
                       onTap: (){print('2');
                       },
@@ -159,7 +159,7 @@ class _ImgSlide extends State<ImgSlide> {
                           ),
                         ),
                         Text('انتقاد یک سرباز سابق ' ,
-                            style: TextStyle(
+                            style:Style.h5(
                                 overflow:TextOverflow.ellipsis ,
                                 color: ObjectColor.baseTextColor
                             )
@@ -168,7 +168,7 @@ class _ImgSlide extends State<ImgSlide> {
                     ) ,
                   ),
                   Container(width: widthImg(),
-                    margin: const EdgeInsets.symmetric(horizontal: 25.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 10.0),
                     child:InkWell(
                       onTap: (){print('3');
                       },
@@ -186,7 +186,7 @@ class _ImgSlide extends State<ImgSlide> {
                           ),
                         ),
                         Text('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd' ,
-                            style: TextStyle(
+                            style:Style.h5(
                                 overflow:TextOverflow.ellipsis ,
                                 color: ObjectColor.baseTextColor
                             )

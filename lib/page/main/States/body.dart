@@ -151,20 +151,15 @@ class _BodyMainPage extends State<BodyMainPage>{
               thickness: 10,
               child:
               SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
                 // scrollDirection: Axis.vertical,
                   controller: _scrollController, // <---- Same as the Scrollbar controller
-                  child:
-                  Center(
-                      child:Container(
+                  child:Container(
                           constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
                           // margin:const EdgeInsets.symmetric(vertical: 20.0),
                           padding: const EdgeInsets.all(12.0),
-                          decoration: BoxDecoration(
-                            color: ObjectColor.baseBackground,
-                          ),
                           child:bl.view
                       )
-                  )
               ),
             ),
           ),

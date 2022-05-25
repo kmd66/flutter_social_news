@@ -64,7 +64,7 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
                 transform: Matrix4.translationValues(0.0, -60, 0.0),
                 child:
                 ClipOval(
-                  child: Image.network('http://localhost:8080/p.jpg',
+                  child: Image.network('http://localhost:8080/defaultUser.jpg',
                     height: 120,
                     width: 120,
                     fit: BoxFit.fill,

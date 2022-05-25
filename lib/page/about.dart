@@ -3,7 +3,25 @@ import 'package:flutter_social_news/helper/textStyle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class About extends StatelessWidget{
+class About extends StatefulWidget {
+  @override
+  _About createState() => new _About();
+}
+
+class _About extends State<About> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    print("initState");
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      print("WidgetsBinding");
+      Future.delayed(Duration(milliseconds: 300), () => print("WidgetsBinding222"));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
