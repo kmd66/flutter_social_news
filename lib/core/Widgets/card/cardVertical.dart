@@ -50,6 +50,12 @@ class _CardVertical extends State<CardVertical> {
         margin: EdgeInsets.only(top: 12),
         child:
         Card(
+            margin: EdgeInsets.zero,
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            elevation: 4,
             color: ObjectColor.cardBackground,
             child:
             Column(
@@ -194,7 +200,7 @@ class _CardVertical extends State<CardVertical> {
   Widget img() {
     if(widget.imgUrl != null)
       return Image.network(widget.imgUrl ,
-        width: widget.width,
+        width: widget.width ,
         height: (widget.width *9)/16,
         fit: BoxFit.fill,
       );

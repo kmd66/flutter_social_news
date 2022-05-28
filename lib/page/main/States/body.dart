@@ -124,6 +124,7 @@ class _BodyMainPage extends State<BodyMainPage>{
                           child: SideMain(),
                         ):Container(width: 0,height: 0,),
                         Container(
+                          alignment: Alignment.topCenter,
                           width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 12,lg: 9),
                           child: main(context, bl),
                         ),
