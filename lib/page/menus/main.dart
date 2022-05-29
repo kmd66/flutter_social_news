@@ -67,7 +67,7 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
                   child: Image.network('http://localhost:8080/defaultUser.jpg',
                     height: 120,
                     width: 120,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

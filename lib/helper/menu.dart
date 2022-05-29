@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../core/model/enums.dart';
+import 'kamaFont.dart';
 
 List<MenuItem> Menu = [
   MenuItem(MenuType.Nav, title:'صفحه اصلی', route: RouteList.HomePage, icon: Icons.home)
-  , MenuItem(MenuType.Nav, title:'پروفایل', route: RouteList.PofilePage, icon: Icons.verified_user)
-  , MenuItem(MenuType.Nav, title:'درباره ما', route: RouteList.AboutPage, icon: Icons.app_blocking_outlined)
+  , MenuItem(MenuType.Nav, title:'پروفایل', route: RouteList.PofilePage, icon: KamaFont.user_shield)
+  , MenuItem(MenuType.Nav, title:'درباره ما', route: RouteList.AboutPage, icon: Icons.info_outline)
   , MenuItem(MenuType.Nav, title:'منو', menu: MenuList.Main, icon: Icons.menu, reghtMenu: false)
 
   , MenuItem(MenuType.Sid, title:'منو0', menu: MenuList.Setting, icon: Icons.settings, reghtMenu: false)

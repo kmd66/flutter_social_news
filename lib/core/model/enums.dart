@@ -26,8 +26,6 @@ enum RouteList {
   LoginPage,
   PofilePage,
 
-  DynamicPasswordPage,
-
 }
 enum MenuList {
   hide,

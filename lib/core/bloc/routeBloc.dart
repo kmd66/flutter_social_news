@@ -12,7 +12,7 @@ import '../../page/profile/profilePage.dart';
 class RouteBloc with ChangeNotifier, DiagnosticableTreeMixin {
   static ScrollController scrollController = ScrollController();
 
-  Widget _view = ProfilePage() ;
+  Widget _view = HomePage() ;
   Widget get view => _view;
 
   String _routeTitle = 'صفحه اصلی';
@@ -38,14 +38,6 @@ class RouteBloc with ChangeNotifier, DiagnosticableTreeMixin {
           )
       );
 
-    switch (route) {
-      case RouteList.HomePage:
-      case RouteList.AboutPage:
-        break;
-
-      case RouteList.DynamicPasswordPage:
-        break;
-    }
 
     AppPropertis.currentRoute = route;
     chengStateNavigationBarController.add(null);

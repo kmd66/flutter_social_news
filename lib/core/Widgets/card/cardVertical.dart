@@ -4,6 +4,8 @@ import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import '../../../helper/objectColor.dart';
 import '../../../helper/textStyle.dart';
 import '../hr.dart';
+import '../texeMore.dart';
+import 'defaultCard.dart';
 
 class CardVertical extends StatefulWidget {
   CardVertical (this.width, {Key key,
@@ -30,17 +32,9 @@ class CardVertical extends StatefulWidget {
 
 class _CardVertical extends State<CardVertical> {
 
-  final _scrollController = new ScrollController();
-  bool overFlow = false;
-  bool textOverFlow = false;
-
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if(_scrollController.position.maxScrollExtent > 0)
-        overFlow = true;
-    });
   }
 
 
@@ -49,16 +43,8 @@ class _CardVertical extends State<CardVertical> {
         width: widget.width,
         margin: EdgeInsets.only(top: 12),
         child:
-        Card(
-            margin: EdgeInsets.zero,
-            clipBehavior: Clip.antiAlias,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
-            ),
-            elevation: 4,
-            color: ObjectColor.cardBackground,
-            child:
-            Column(
+        DdefaultCard(
+            child:Column(
               children: [
                 hede(),
                 img(),
@@ -115,8 +101,7 @@ class _CardVertical extends State<CardVertical> {
                         ],)
                     ],),
                 )
-              ],)
-        )
+              ],))
     );
   }
 
@@ -157,43 +142,11 @@ class _CardVertical extends State<CardVertical> {
   }
 
   Widget text() {
-    if(widget.textHeight == null || textOverFlow)
-      return Container(
-          width: widget.width ,
-          padding: const EdgeInsets.only(bottom: 12,left: 12,right: 12),
-          child:Text(widget.text,style: Style.h5(),textAlign: TextAlign.justify,)
-      );
-    else
+
       return   Container(
-          height: widget.textHeight,
           width: widget.width ,
           padding: const EdgeInsets.only(bottom: 12,left: 12,right: 12),
-          child:
-          Row(
-            mainAxisAlignment:MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                  width: overFlow ? (widget.width - 100):widget.width - 35,
-                  child:SingleChildScrollView(
-                      controller: _scrollController,
-                      scrollDirection: Axis.vertical,
-                      child: Text(widget.text,style: Style.h5(),textAlign: TextAlign.justify,)
-                  )
-              ),
-              ShowObj(
-                  isShow: overFlow ,
-                  obj:
-                  Container(
-                      child:   IconButton(
-                          icon: Icon(
-                            Icons.expand_more_rounded,
-                            size: 16,
-                            color: ObjectColor.baseIcon,),
-                          onPressed: (){setState(()=>textOverFlow = true);
-                          })
-                  )
-              )
-            ],)
+          child:TextMore(widget.text,style: Style.h5())
       );
   }
 

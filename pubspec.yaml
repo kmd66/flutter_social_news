@@ -52,6 +52,9 @@ flutter:
         - asset: assets/fonts/Vazir-Light-FD.ttf
           style: italic
           weight: 700
+    - family: Kama
+      fonts:
+        - asset: assets/fonts/Kama.ttf
 
   uses-material-design: true
 
