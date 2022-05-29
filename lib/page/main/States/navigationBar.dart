@@ -42,7 +42,7 @@ class _NavigationBar extends State<NavigationBarPage>{
     isAppbar = !bl.isVisibleAppBar;
     return
       ShowObj(
-        animat: true,
+        animat: context.watch<AfterSplashBloc>().isVisibleNavigationBar,
         isShow: bl.isVisibleNavigationBar && bl.isShowNavigationBar && bl.isScrolNavigationBar,
         obj: Container(
           decoration: BoxDecoration(

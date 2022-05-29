@@ -40,7 +40,7 @@ class _AppBarMainPage extends State<AppBarMainPage>{
   Widget build(BuildContext context) {
     return
       ShowObj(
-        animat: true,
+        animat: context.watch<AfterSplashBloc>().isVisibleAppBar,
         isShow: context.watch<AfterSplashBloc>().isVisibleAppBar && context.watch<AfterSplashBloc>().isScrolAppBar,
         obj:Container(
             width: MediaQuery.of(context).size.width,

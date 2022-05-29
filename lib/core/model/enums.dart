@@ -25,6 +25,7 @@ enum RouteList {
   AboutPage,
   LoginPage,
   PofilePage,
+  ChatPage,
 
 }
 enum MenuList {

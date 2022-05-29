@@ -183,8 +183,8 @@ class _ProfilePage extends State<ProfilePage> {
                           }),
                       IconButton(
                           icon: Icon(KamaFont.chat,color: white,),
-                          onPressed: (){setState(() {});
-                          }),
+                          onPressed: ()=>context.read<RouteBloc>().chengView(RouteList.ChatPage )
+                      ),
                     ],),
                 ],),
             ),

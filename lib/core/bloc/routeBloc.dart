@@ -7,12 +7,13 @@ import 'package:flutter_social_news/page/main/events.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_social_news/page/home/homePage.dart';
+import '../../page/chat/chatPage.dart';
 import '../../page/profile/profilePage.dart';
 
 class RouteBloc with ChangeNotifier, DiagnosticableTreeMixin {
   static ScrollController scrollController = ScrollController();
 
-  Widget _view = ProfilePage() ;
+  Widget _view = ChatPage(new ChengState(StateType.Main)) ;
   Widget get view => _view;
 
   String _routeTitle = 'صفحه اصلی';
@@ -54,6 +55,11 @@ class RouteBloc with ChangeNotifier, DiagnosticableTreeMixin {
       case RouteList.PofilePage:
         _routeTitle = 'پروفایل';
         _view = ProfilePage();
+        break;
+
+      case RouteList.ChatPage:
+        _routeTitle = 'پیام';
+        _view = ChatPage(chengState);
         break;
 
       default :

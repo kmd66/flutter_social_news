@@ -104,39 +104,50 @@ class _BodyMainPage extends State<BodyMainPage>{
   Widget build(BuildContext context) {
     RouteBloc bl = Provider.of<RouteBloc>(context, listen:true);
     SizeConfig.context(context);
-    return
-      ShowObj(
-          isShow: context.watch<AfterSplashBloc>().isVisibleBody ,
-          obj:Center(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
-                child:LayoutBuilder(
-                    builder: (BuildContext context, BoxConstraints constraints) {
-                      return Row(children: [
-                        SizeConfig.sizeType == SizeType.Lg ?
-                        Container(
-                          width:SizeConfig.init(constraints.maxWidth, lg: 3),
-                          decoration: BoxDecoration(
-                            color: ObjectColor.rightMenuBackground,
-                          ),
-                          child: SideMain(),
-                        ):Container(width: 0,height: 0,),
-                        Container(
-                          alignment: Alignment.topCenter,
-                          width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 12,lg: 9),
-                          child: main(context, bl),
-                        ),
-                      ],);
-                    }
-
-                ) ,
-              )
-          )
-      );
-
+    if(context.watch<AfterSplashBloc>().isVisibleBody)
+      return _show(context, bl);
+    else
+      return _hide(context, bl);
   }
+  Widget _show(BuildContext context, RouteBloc bl) {
+    return Center(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
+          child:LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Row(children: [
+                  SizeConfig.sizeType == SizeType.Lg ?
+                  Container(
+                    width:SizeConfig.init(constraints.maxWidth, lg: 3),
+                    decoration: BoxDecoration(
+                      color: ObjectColor.rightMenuBackground,
+                    ),
+                    child: SideMain(),
+                  ):Container(width: 0,height: 0,),
+                  Container(
+                    alignment: Alignment.topCenter,
+                    width:SizeConfig.init(constraints.maxWidth, sm: 12,md: 12,lg: 9),
+                    child: main(context, bl),
+                  ),
+                ],);
+              }
+
+          ) ,
+        )
+    );
+  }
+
+  Widget _hide(BuildContext context, RouteBloc bl) {
+    return
+      Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child:bl.view
+      );
+  }
+
   Widget main(BuildContext context, RouteBloc bl) {
     return
       Stack(
