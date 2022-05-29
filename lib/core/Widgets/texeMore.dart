@@ -43,7 +43,7 @@ class _TextMore extends State<TextMore> {
               Row(
                 children: [
                   Container(
-                    width: overFlow && !textOverFlow? constraints.maxWidth - 30 : constraints.maxWidth,
+                    width: overFlow && !textOverFlow? constraints.maxWidth - 38 : constraints.maxWidth,
                       child:SingleChildScrollView(
                           controller: _scrollController,
                           scrollDirection: textOverFlow? Axis.vertical:Axis.horizontal,
@@ -53,10 +53,12 @@ class _TextMore extends State<TextMore> {
                   ShowObj(
                       isShow: overFlow && !textOverFlow ,
                       obj:
-                      Container(
-                          child: InkWell(child:Text('..بیشتر', style: TextStyle(fontSize: 10, color:widget.style.color ),),
-                              onTap: (){setState(()=>textOverFlow = true);}
-                              )
+                      InkWell(
+                          child: Container(
+                              padding: const EdgeInsets.all(4.0),
+                              child:Text('..بیشتر', style: TextStyle(fontSize: 9, color:widget.style.color ),)
+                              ),
+                          onTap: (){setState(()=>textOverFlow = true);}
                       )
                   )
                 ],);

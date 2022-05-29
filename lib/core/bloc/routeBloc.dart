@@ -12,7 +12,7 @@ import '../../page/profile/profilePage.dart';
 class RouteBloc with ChangeNotifier, DiagnosticableTreeMixin {
   static ScrollController scrollController = ScrollController();
 
-  Widget _view = HomePage() ;
+  Widget _view = ProfilePage() ;
   Widget get view => _view;
 
   String _routeTitle = 'صفحه اصلی';

@@ -124,19 +124,6 @@ class _HomePage extends State<HomePage> {
                 ),
               ]);
           });
-    // ListView.builder(
-    //   scrollDirection: Axis.vertical,
-    //   controller: ScrollController(),
-    //   shrinkWrap: true,
-    //   itemCount: imgList.length,
-    //   itemBuilder: (context, i) {
-    //     return CardVertical(
-    //         150,
-    //         imgUrl: imgList[i],
-    //         text:  imgList[i]
-    //     );
-    //   },
-    // );
   }
 
   Widget card(BuildContext context,double size) {
