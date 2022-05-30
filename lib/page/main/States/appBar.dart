@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
+import '../../../helper/appPropertis.dart';
 import '../../../helper/sizeConfig.dart';
 import '../../../helper/textStyle.dart';
 import '../events.dart';
@@ -37,7 +38,8 @@ class _AppBarMainPage extends State<AppBarMainPage>{
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
+    AppPropertis.isWillPopScope= context.watch<AfterSplashBloc>().isVisibleAppBar;
     return
       ShowObj(
         animat: context.watch<AfterSplashBloc>().isVisibleAppBar,

@@ -40,7 +40,6 @@ class Main extends StatelessWidget{
   }
 
   Future<void> getSecurityCode() async {
-    print('SecretStampSms');
     streamChengState.add(new ChengState(StateType.SecretStampSms, navigationsAdd: false,getList: false));
   }
 

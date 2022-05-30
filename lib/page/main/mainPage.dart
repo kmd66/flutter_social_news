@@ -56,7 +56,7 @@ class _MainPage extends State<MainPage> {
         ),
 
         image: Image.asset('assets/logo.png'),
-        //new Image.network('https://dad.mefa.ir/app/assets/images/app-logo-white.png'),
+        //new GetImage('https://dad.mefa.ir/app/assets/images/app-logo-white.png'),
         backgroundColor: Color.fromRGBO(55,71,79,1),
         styleTextUnderTheLoader: new TextStyle(),
         photoSize: 100.0,

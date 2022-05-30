@@ -108,7 +108,8 @@ class _AfterSplash extends State<AfterSplash> {
                 ],
               ),
               onWillPop: (){
-                navigation();
+                if(AppPropertis.isWillPopScope)
+                  navigation();
                 return Future.value(false);
               })
       );

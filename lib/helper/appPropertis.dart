@@ -25,4 +25,8 @@ class AppPropertis {
 
   static dynamic Authorization() =>
       accessToken != null ? 'Bearer ${json.decode(accessToken)['access_token']}' : null;
+
+
+  static bool isWillPopScope = true;
+  static String defaultImg ='assets/login.jpg';
 }

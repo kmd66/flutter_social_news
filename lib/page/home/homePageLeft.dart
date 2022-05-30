@@ -14,6 +14,7 @@ import 'package:flutter_social_news/core/model/message.dart' as msgModel;
 import 'package:flutter_social_news/core/apiModel.dart' as apiModel;
 import 'package:provider/src/provider.dart';
 
+import '../../core/Widgets/getImage.dart';
 import '../../core/Widgets/hr.dart';
 import '../../core/Widgets/imgSlide.dart';
 import '../../core/model/list.dart';
@@ -42,7 +43,7 @@ class HomePageLeft extends StatelessWidget{
           HrText(height: 10.0,label: 'پیشنهاد',lineColor:ObjectColor.baseTextColor ,),
 
           Container(margin: const EdgeInsets.only(top: 18),),
-          Image.network('http://localhost:8080/1.jpg' ,
+          GetImage('http://localhost:8080/1.jpg' ,
             fit: BoxFit.fill,
           ),
           Text('انتقاد یک سرباز سابق از دولت فرانسه به دلیل ارسال سلاح به اوکراین' ,
@@ -53,7 +54,7 @@ class HomePageLeft extends StatelessWidget{
           ),
 
           Container(margin: const EdgeInsets.only(top: 18),),
-          Image.network('http://localhost:8080/3.jpg' ,
+          GetImage('http://localhost:8080/3.jpg' ,
             fit: BoxFit.fill,
           ),
           Text('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd' ,
@@ -67,7 +68,7 @@ class HomePageLeft extends StatelessWidget{
           HrText(height: 10.0,label: 'انتقاد!',lineColor:ObjectColor.baseTextColor ,),
 
           Container(margin: const EdgeInsets.only(top: 18),),
-          Image.network('http://localhost:8080/1.jpg' ,
+          GetImage('http://localhost:8080/1.jpg' ,
             fit: BoxFit.fill,
           ),
           Text('انتقاد یک سرباز سابق از دولت فرانسه به دلیل ارسال سلاح به اوکراین' ,

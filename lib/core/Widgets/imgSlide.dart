@@ -8,6 +8,8 @@ import 'package:flutter_social_news/core/model/message.dart' as msgModel;
 import 'package:flutter_social_news/helper/messageColor.dart';
 import 'package:flutter_social_news/helper/objectColor.dart';
 
+import 'getImage.dart';
+
 class ImgSlide extends StatefulWidget {
   const ImgSlide({Key key, this.borderRadius = true, this.width, this.height}) : super(key: key);
   final bool borderRadius;
@@ -53,7 +55,7 @@ class _ImgSlide extends State<ImgSlide> {
                 child:
                 ClipRRect(
                   borderRadius: widget.borderRadius? BorderRadius.only(bottomLeft: Radius.circular(8.0) ,topLeft: Radius.circular(8.0) ): BorderRadius.circular(0.0),
-                  child: Image.network('http://localhost:8080/1.jpg' ,
+                  child: GetImage('http://localhost:8080/1.jpg' ,
                     width: 30,
                     height: widget.height - 20,
                     fit: BoxFit.fitHeight,
@@ -70,7 +72,7 @@ class _ImgSlide extends State<ImgSlide> {
               Column(children: [
                 ClipRRect(
                   borderRadius: widget.borderRadius? BorderRadius.circular(8.0): BorderRadius.circular(0.0),
-                  child: Image.network('http://localhost:8080/2.jpg' ,
+                  child: GetImage('http://localhost:8080/2.jpg' ,
                     width: widget.width -  110,
                     height: widget.height,
                     fit: BoxFit.fill,
@@ -93,7 +95,7 @@ class _ImgSlide extends State<ImgSlide> {
                 child:
                 ClipRRect(
                   borderRadius: widget.borderRadius? BorderRadius.only(bottomRight: Radius.circular(8.0) ,topRight: Radius.circular(8.0) ): BorderRadius.circular(0.0),
-                  child: Image.network('http://localhost:8080/3.jpg' ,
+                  child: GetImage('http://localhost:8080/3.jpg' ,
                     width: 30,
                     height: widget.height - 20,
                     fit: BoxFit.fitHeight,
@@ -125,7 +127,7 @@ class _ImgSlide extends State<ImgSlide> {
                           child:
                           ClipRRect(
                             borderRadius: widget.borderRadius? BorderRadius.circular(8.0): BorderRadius.circular(0.0),
-                            child: Image.network('http://localhost:8080/1.jpg' ,
+                            child: GetImage('http://localhost:8080/1.jpg' ,
                               width: widthImg(),
                               fit: BoxFit.fill,
                             ),
@@ -152,7 +154,7 @@ class _ImgSlide extends State<ImgSlide> {
                           child:
                           ClipRRect(
                             borderRadius: widget.borderRadius? BorderRadius.circular(8.0): BorderRadius.circular(0.0),
-                            child: Image.network('http://localhost:8080/2.jpg' ,
+                            child: GetImage('http://localhost:8080/2.jpg' ,
                               width: widthImg(),
                               fit: BoxFit.fill,
                             ),
@@ -179,7 +181,7 @@ class _ImgSlide extends State<ImgSlide> {
                           child:
                           ClipRRect(
                             borderRadius: widget.borderRadius? BorderRadius.circular(8.0): BorderRadius.circular(0.0),
-                            child: Image.network('http://localhost:8080/3.jpg' ,
+                            child: GetImage('http://localhost:8080/3.jpg' ,
                               width: widthImg(),
                               fit: BoxFit.fill,
                             ),

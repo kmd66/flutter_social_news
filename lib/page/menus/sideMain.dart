@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/Widgets/accordion.dart';
+import '../../core/Widgets/getImage.dart';
 import '../../helper/menu.dart' as menuHelper;
 
 
@@ -43,7 +44,7 @@ class _SideMain extends State<SideMain> {
                       Container(
                         child:
                         ClipOval(
-                          child: Image.network('http://localhost:8080/defaultUser.jpg',
+                          child: GetImage('http://localhost:8080/defaultUser.jpg',
                             height: 120,
                             width: 120,
                             fit: BoxFit.cover,

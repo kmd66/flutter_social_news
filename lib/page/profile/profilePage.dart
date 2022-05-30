@@ -14,6 +14,7 @@ import 'package:flutter_social_news/core/apiModel.dart' as apiModel;
 import 'package:provider/src/provider.dart';
 import '../../core/Widgets/badgeIcon.dart';
 import '../../core/Widgets/card/defaultCard.dart';
+import '../../core/Widgets/getImage.dart';
 import '../../core/Widgets/hr.dart';
 import '../../core/Widgets/imgSlide.dart';
 import '../../core/Widgets/texeMore.dart';
@@ -121,7 +122,7 @@ class _ProfilePage extends State<ProfilePage> {
               padding:p1 ,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage("http://localhost:8080/delafltbaner.jpg"),
+                  image: GetImage.provider("http://localhost:8080/delafltbaner.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -132,7 +133,7 @@ class _ProfilePage extends State<ProfilePage> {
                     radius: _imgSize,
                     backgroundColor: ObjectColor.baseBorder,
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage('http://localhost:8080/defaultUser.jpg'),
+                      backgroundImage: GetImage.provider('http://localhost:8080/defaultUser.jpg'),
                       radius: _imgSize - 1,
                     ),
                   ),

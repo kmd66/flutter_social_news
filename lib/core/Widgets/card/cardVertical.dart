@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import '../../../helper/objectColor.dart';
 import '../../../helper/textStyle.dart';
+import '../getImage.dart';
 import '../hr.dart';
 import '../texeMore.dart';
 import 'defaultCard.dart';
@@ -116,7 +117,8 @@ class _CardVertical extends State<CardVertical> {
               mainAxisAlignment:MainAxisAlignment.start,
               children: [
                 ClipOval(
-                  child: Image.network('http://localhost:8080/defaultUser.jpg',
+                  child:
+                  GetImage('http://localhost:8080/defaultUser.jpg',
                     height: 30,
                     width: 30,
                     fit: BoxFit.fill,
@@ -152,7 +154,7 @@ class _CardVertical extends State<CardVertical> {
 
   Widget img() {
     if(widget.imgUrl != null)
-      return Image.network(widget.imgUrl ,
+      return GetImage(widget.imgUrl ,
         width: widget.width ,
         height: (widget.width *9)/16,
         fit: BoxFit.fill,

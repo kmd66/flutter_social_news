@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../../core/Widgets/getImage.dart';
 import '../../../core/bloc/afterSplashBloc.dart';
 import '../../../core/model/chengState.dart';
 import '../../../core/model/enums.dart';
@@ -57,6 +58,7 @@ class _Main extends State<Main> {
     const EdgeInsets p1 =  EdgeInsets.symmetric(horizontal: 12.0);
 
     const EdgeInsets m1 =  EdgeInsets.symmetric(vertical: 12.0);
+    var t = GetImage(list[i].Img);
 
     return
       Row(
@@ -71,7 +73,7 @@ class _Main extends State<Main> {
                 radius: _imgSize,
                 backgroundColor: ObjectColor.base ,
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(list[i].Img),
+                  backgroundImage: GetImage.provider(list[i].Img),
                   radius: _imgSize - 1,
                 ),
               ),

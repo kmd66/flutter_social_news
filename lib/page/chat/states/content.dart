@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import 'package:provider/provider.dart';
+import '../../../core/Widgets/getImage.dart';
 import '../../../core/bloc/afterSplashBloc.dart';
 import '../../../core/model/chengState.dart';
 import '../../../core/model/enums.dart';
@@ -110,7 +111,7 @@ class _Content extends State<Content> {
                         radius: _imgSize,
                         backgroundColor: ObjectColor.base ,
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage('http://localhost:8080/User1.png'),
+                          backgroundImage: GetImage.provider('http://localhost:8080/User1.png'),
                           radius: _imgSize - 1,
                         ),
                       ),
@@ -146,7 +147,7 @@ class _Content extends State<Content> {
               radius: _imgSize,
               backgroundColor: ObjectColor.base ,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(list[i].Img),
+                backgroundImage: GetImage.provider(list[i].Img),
                 radius: _imgSize - 1,
               ),
             ),

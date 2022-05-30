@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/Widgets/accordion.dart';
+import '../../core/Widgets/getImage.dart';
 import '../../helper/menu.dart' as menuHelper;
 
 
@@ -64,7 +65,7 @@ class _MainWidgetWidget extends BasePopupState<MainMenuWidget> {
                 transform: Matrix4.translationValues(0.0, -60, 0.0),
                 child:
                 ClipOval(
-                  child: Image.network('http://localhost:8080/defaultUser.jpg',
+                  child: GetImage('http://localhost:8080/defaultUser.jpg',
                     height: 120,
                     width: 120,
                     fit: BoxFit.cover,
