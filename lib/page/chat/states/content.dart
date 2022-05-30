@@ -183,12 +183,50 @@ class _Content extends State<Content> {
   }
 
   Widget btn(BuildContext context) {
-
     return Container(
-      color: ObjectColor.cardBackground,
-      height: 50,
+      constraints:  BoxConstraints(minWidth: 500, maxWidth: 500),
+      color: ObjectColor.baseBackground,
       width: MediaQuery.of(context).size.width,
-      
+      child: Center(
+        child:Row(children: [
+          Expanded(
+            child:Container(
+              decoration: BoxDecoration(
+                color: ObjectColor.cardBackground,
+                borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+              ),
+              child: Row(children: [
+                IconButton(
+                    icon:Icon(Icons.send, color: ObjectColor.baseTextColor , size: 16,),
+                    onPressed: () {
+                    }
+                ),
+                Expanded(
+                    child:input()
+                ),
+                IconButton(
+                    icon:Icon(Icons.insert_emoticon, color: ObjectColor.baseTextColor , size: 16, ),
+                    onPressed: () {
+                    }
+                ),
+              ],) ,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: CircleAvatar(
+              backgroundColor: ObjectColor.base,
+              child: IconButton(
+                  icon:Icon(Icons.navigate_next, color: white, ),
+                  onPressed: () {
+                    streamChengState.add(new ChengState(StateType.Main, navigationsAdd: false));
+                    context.read<AfterSplashBloc>().visible(true,true, true);
+                  }
+              ),
+            ),
+          )
+        ],),
+      ),
     );
   }
 
@@ -212,6 +250,23 @@ class _Content extends State<Content> {
       );
 
     }
+  }
+
+  Widget input() {
+   return TextFormField(
+     style: TextStyle(
+       color: ObjectColor.baseTextColor,
+       fontSize: 14,
+       height: 0.8,
+     ),
+     onChanged: (value) {
+       // if(onChange != null)onChange(value);
+     } ,
+     decoration: InputDecoration(
+       border: InputBorder.none,
+       //border: OutlineInputBorder(),
+     ),
+   );
   }
 
 }
