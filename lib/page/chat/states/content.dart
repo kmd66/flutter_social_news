@@ -87,6 +87,7 @@ class _Content extends State<Content> {
 
     return
       Container(
+        padding: const EdgeInsets.only(top: 18),
           width: width,
           color: ObjectColor.base,
           child: Center(child: Container(
@@ -111,7 +112,7 @@ class _Content extends State<Content> {
                         radius: _imgSize,
                         backgroundColor: ObjectColor.base ,
                         child: CircleAvatar(
-                          backgroundImage: GetImage.provider('http://localhost:8080/User1.png'),
+                          child: ClipOval(child:GetImage('http://localhost:8080/User1.png')),
                           radius: _imgSize - 1,
                         ),
                       ),
@@ -147,7 +148,7 @@ class _Content extends State<Content> {
               radius: _imgSize,
               backgroundColor: ObjectColor.base ,
               child: CircleAvatar(
-                backgroundImage: GetImage.provider(list[i].Img),
+                child: ClipOval(child:GetImage(list[i].Img)),
                 radius: _imgSize - 1,
               ),
             ),
@@ -187,6 +188,7 @@ class _Content extends State<Content> {
       color: ObjectColor.cardBackground,
       height: 50,
       width: MediaQuery.of(context).size.width,
+      
     );
   }
 

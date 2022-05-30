@@ -73,7 +73,7 @@ class _Main extends State<Main> {
                 radius: _imgSize,
                 backgroundColor: ObjectColor.base ,
                 child: CircleAvatar(
-                  backgroundImage: GetImage.provider(list[i].Img),
+                  child: ClipOval(child:GetImage(list[i].Img)),
                   radius: _imgSize - 1,
                 ),
               ),
@@ -131,7 +131,7 @@ class _Main extends State<Main> {
     List<String> Img =[
       'http://localhost:8080/User1.png',
       'http://localhost:8080/User2.jpg',
-      'http://localhost:8080/User3.png',
+      'http://localhost:8080/Usqer3.png',
     ];
 
     for (int i = 0; i < 3; i++) {

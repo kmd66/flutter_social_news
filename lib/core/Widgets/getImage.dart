@@ -1,3 +1,6 @@
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_social_news/helper/appPropertis.dart';
 import 'package:flutter_social_news/helper/objectColor.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,27 +20,43 @@ class GetImage extends StatelessWidget{
           fit: fit,
           height: height,
           width: height,
-          errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace)=>
-              Image.asset(AppPropertis.defaultImg,
-                fit: fit,
-                height: height,
-                width: height,
-              )
+          errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+             return Image.asset(AppPropertis.defaultImg,
+              fit: fit,
+              height: height,
+              width: height,
+            );
+          }
       );
   }
-  static Object provider(String _url) {
+
+  static Object provider(String _url){
     bool b = false;
-    Image.network(_url,
-        errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace)
-        {
-          b = true;
+    var t =  Image.network(_url,
+        errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+      print(_url);
+          return Image.asset(AppPropertis.defaultImg,);
         }
     );
-    if(b)
+    print(t.image);
+    return t.image;
+    if(!b)
       return
         NetworkImage(_url);
     else
       return
         AssetImage(AppPropertis.defaultImg);
   }
+
+  static  Future<String> getImgUrl(String imgUrl) async {
+    try {
+      Uint8List bytes = (await NetworkAssetBundle(Uri.parse(imgUrl)).load(imgUrl)).buffer.asUint8List();
+      print("Error11!");
+      return imgUrl;
+    } catch (e) {
+      print("Error11: $e");
+      return null;
+    }
+  }
+
 }

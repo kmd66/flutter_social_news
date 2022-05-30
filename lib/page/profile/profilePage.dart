@@ -107,6 +107,7 @@ class _ProfilePage extends State<ProfilePage> {
                 ]);
           });
   }
+
   Widget card(BuildContext context, double size) {
     double _imgSize = SizeConfig.sizeType == SizeType.Lg? 90 : 60;
     const EdgeInsets p1 =  EdgeInsets.symmetric(horizontal: 14.0, vertical: 20.0);
@@ -120,9 +121,10 @@ class _ProfilePage extends State<ProfilePage> {
           child:Column(children: [
             Container(
               padding:p1 ,
+
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: GetImage.provider("http://localhost:8080/delafltbaner.jpg"),
+                  image: NetworkImage("http://localhost:8080/delafltbaner.jpg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -133,7 +135,7 @@ class _ProfilePage extends State<ProfilePage> {
                     radius: _imgSize,
                     backgroundColor: ObjectColor.baseBorder,
                     child: CircleAvatar(
-                      backgroundImage: GetImage.provider('http://localhost:8080/defaultUser.jpg'),
+                      child: ClipOval(child:GetImage('http://localhost:8080/defaultUser.jpg')),
                       radius: _imgSize - 1,
                     ),
                   ),
