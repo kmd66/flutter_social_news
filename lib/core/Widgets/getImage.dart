@@ -19,12 +19,12 @@ class GetImage extends StatelessWidget{
       Image.network(url,
           fit: fit,
           height: height,
-          width: height,
+          width: width,
           errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
              return Image.asset(AppPropertis.defaultImg,
               fit: fit,
               height: height,
-              width: height,
+              width: width,
             );
           }
       );

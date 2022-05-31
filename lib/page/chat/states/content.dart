@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
@@ -164,6 +163,7 @@ class _Content extends State<Content> {
 
   Widget btn(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(4.0),
       constraints:  BoxConstraints(minWidth: 500, maxWidth: 500),
       color: ObjectColor.baseBackground,
       width: MediaQuery.of(context).size.width,
