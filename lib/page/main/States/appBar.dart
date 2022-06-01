@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
 import '../../../helper/appPropertis.dart';
-import '../../../helper/sizeConfig.dart';
-import '../../../helper/textStyle.dart';
 import '../events.dart';
 
 
@@ -38,45 +36,36 @@ class _AppBarMainPage extends State<AppBarMainPage>{
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     AppPropertis.isWillPopScope= context.watch<AfterSplashBloc>().isVisibleAppBar;
     return
       ShowObj(
         animat: context.watch<AfterSplashBloc>().isVisibleAppBar,
         isShow: context.watch<AfterSplashBloc>().isVisibleAppBar && context.watch<AfterSplashBloc>().isScrolAppBar,
-        obj:Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(color: ObjectColor.base),
-            child: Center(
-              child:Container(
-                constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(top: 0, right: 10.0, bottom: 0, left: 10.0),
-                      child:
-                      IconButton(
-                        color: Colors.white ,
-                        onPressed: () =>widget.backPress(),
-                        icon:
-                        Icon(Icons.arrow_back_ios),
-                      ),
-                    ),
-                    Text(context.watch<RouteBloc>().routeTitle,style: Style.h4(color: Colors.white) ,),
-                    Container(
-                      margin: const EdgeInsets.all(10.0),
-                      child:
-                      IconButton(
-                        color: Colors.white ,
-                        onPressed:()=>context.read<MenuBloc>().chengView(MenuList.Setting),
-                        icon: Icon(Icons.settings ),
-                      ),
-                    ),
-                  ],),
+        obj:AppBar(
+            centerTitle: true,
+            backgroundColor: ObjectColor.base,
+            shadowColor:Colors.transparent,
+            title: Text(context.watch<RouteBloc>().routeTitle),
+            leading: Container(
+              margin: const EdgeInsets.only(top: 0, right: 10.0, bottom: 0, left: 10.0),
+              child:
+              IconButton(
+                onPressed: () =>widget.backPress(),
+                icon: Icon(Icons.arrow_back_ios),
               ),
             ),
-          ),
+            actions: [
+              Container(
+                margin: const EdgeInsets.all(10.0),
+                child:
+                IconButton(
+                  onPressed:()=>context.read<MenuBloc>().chengView(MenuList.Setting),
+                  icon: Icon(Icons.settings),
+                ),
+              ),
+            ]
+        ),
       );
   }
 
