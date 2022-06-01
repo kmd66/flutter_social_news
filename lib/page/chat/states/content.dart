@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_social_news/core/Widgets/imageGif.dart';
@@ -29,8 +30,10 @@ class _Content extends State<Content> {
   final  _textController = TextEditingController();
   final _focusNode = FocusNode();
   bool _afterBuild = false;
+  final _scrollController = ScrollController();
   bool _imojiBox = false;
   List<ChatModel> list = [];
+  List<ChatModel> list2 = [];
 
   @override
   void initState() {
@@ -40,13 +43,18 @@ class _Content extends State<Content> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // setState(()=>_afterBuild = true);
+      if(_scrollController.position.maxScrollExtent > 0){
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      }
     });
+
   }
 
   @override
   void dispose() {
     _textController.dispose();
     _focusNode.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -127,24 +135,23 @@ class _Content extends State<Content> {
       Expanded(
         child:
         Container(
-          constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
-          child:
-          Scrollbar(
-            child:RawScrollbar(
-              isAlwaysShown: true,
-              thumbColor:ObjectColor.shadowBackground(.2),
-              radius: Radius.circular(20),
-              thickness: 10,
-              child:SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(children:
-                    list.map((model) => item(width, model)).toList()
-                    ),
-                  )
-              ),
-            ),
-          ),
+            constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
+            child:Padding(
+                padding: const EdgeInsets.all(12),
+                child: SingleChildScrollView(
+                    controller: _scrollController,
+                    physics: ScrollPhysics(),
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      // controller: ScrollController(),
+                      shrinkWrap: true,
+                      itemCount: list2.length,
+                      itemBuilder: (context, i) {
+                        return item(width, list2[i]);
+                      },
+                    )
+                )
+            )
         ),
       );
   }
@@ -291,6 +298,11 @@ class _Content extends State<Content> {
       'مخفی کردن فالویینگ. بنابراین، ما می‌دانیم که نگرانی شما این است که از',
       ' مون چقدر باشد؟ اولین دیدگاه غلط اینه که افراد فکر میکنند با اول ',
       'در این مطلب تفاوت های فالوور و فال',
+      'دکمه سبز رنگ ',' connection from deb','Performing hot restart...','estarted application',
+      'مخفی کردن فالویینگ. بنابراین، ما می‌دانیم که نگرانی شما این است که از',
+      ' مون چقدر باشد؟ اولین دیدگاه غلط اینه که افراد فکر میکنند با اول ',
+      'در این مطلب تفاوت های فالوور و فال',
+      '<emj:1>','<emj:4>','<emj:5>','<emj:7>'
     ];
     var now = new DateTime.now();
 
@@ -302,6 +314,7 @@ class _Content extends State<Content> {
 
     }
     list.add(ChatModel.setProperty(Msg: 'پیام آخر',b: true,Date: now.add(Duration(days: -70)).toString()));
+    list2 = list.reversed.toList();
   }
 
   Widget input() {
@@ -329,8 +342,13 @@ class _Content extends State<Content> {
   Widget sendText(value) {
     if(!Tools.IsNullOrEmpty(_textController.text)){
       list.insert(0, ChatModel.setProperty(Msg: _textController.text, b: true, Date: DateTime.now().toString() ));
+      list2 = list.reversed.toList();
+
       setState(() {
         _textController.text = '';
+      });
+      Timer(Duration(milliseconds: 1), () {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       });
     }
     Timer(Duration(milliseconds: 1), () {
@@ -355,8 +373,12 @@ class _Content extends State<Content> {
       height: imgSize- 5,
       child:ImageGif(url, height: imgSize- 5, width: imgSize- 5, animation: false,
         onPressed: (){
+          _imojiBox= false;
           _textController.text = '<emj:${Tools.fileName(url)}>';
           sendText(null);
+          Timer(Duration(milliseconds: 1), () {
+            _focusNode.requestFocus();
+          });
         },
       ),
     );
