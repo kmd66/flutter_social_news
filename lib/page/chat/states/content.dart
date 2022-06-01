@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import '../../../core/model/enums.dart';
 import '../../../helper/objectColor.dart';
 import '../../../helper/sizeConfig.dart';
 import '../../../helper/textStyle.dart';
+import '../../../helper/tools.dart';
 import '../obj.dart';
 
 
@@ -22,7 +24,10 @@ class Content extends StatefulWidget {
 }
 
 class _Content extends State<Content> {
+  final  _textController = TextEditingController();
+  final _focusNode = FocusNode();
   bool _afterBuild = false;
+  bool _imojiBox = false;
   List<ChatModel> list = [];
 
   @override
@@ -38,6 +43,8 @@ class _Content extends State<Content> {
 
   @override
   void dispose() {
+    _textController.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -53,27 +60,7 @@ class _Content extends State<Content> {
               children: [
                 Column(children: [
                   hed(context,size.width),
-
-                  Expanded(
-                        child:
-                        Scrollbar(
-                          child:RawScrollbar(
-                            isAlwaysShown: true,
-                            thumbColor:ObjectColor.shadowBackground(.2),
-                            radius: Radius.circular(20),
-                            thickness: 10,
-                            child:SingleChildScrollView(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(12),
-                                  child: Column(children:
-                                  list.map((model) => item(size.width, model)).toList()
-                                  ),
-                                )
-                            ),
-                          ),
-                        ),
-                    ),
-
+                  man(context,size.width),
                   btn(context),
                 ],),
               ]),
@@ -133,6 +120,33 @@ class _Content extends State<Content> {
       );
   }
 
+  Widget man(BuildContext context, double width) {
+    return
+      Expanded(
+        child:
+        Container(
+          constraints:  BoxConstraints(minWidth: SizeConfig.minWidth - 24, maxWidth: SizeConfig.maxWidth - 24),
+          child:
+          Scrollbar(
+            child:RawScrollbar(
+              isAlwaysShown: true,
+              thumbColor:ObjectColor.shadowBackground(.2),
+              radius: Radius.circular(20),
+              thickness: 10,
+              child:SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(children:
+                    list.map((model) => item(width, model)).toList()
+                    ),
+                  )
+              ),
+            ),
+          ),
+        ),
+      );
+  }
+
   Widget item(double size, ChatModel model) {
     return Container(
       width: size,
@@ -162,54 +176,104 @@ class _Content extends State<Content> {
   }
 
   Widget btn(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(4.0),
-      constraints:  BoxConstraints(minWidth: 500, maxWidth: 500),
-      color: ObjectColor.baseBackground,
-      width: MediaQuery.of(context).size.width,
-      child: Center(
-        child:Row(children: [
-          Expanded(
-            child:Container(
-              decoration: BoxDecoration(
-                color: ObjectColor.cardBackground,
-                borderRadius: BorderRadius.all(const Radius.circular(20.0)),
-              ),
-              child: Row(children: [
+    if(_imojiBox)
+      return Container(
+        padding: const EdgeInsets.all(4.0),
+        constraints:  BoxConstraints(maxWidth: 500),
+        height: 400,
 
-                IconButton(
-                    icon:Icon(Icons.send, color: ObjectColor.baseTextColor , size: 16,),
-                    onPressed: () {
-                    }
+        color: ObjectColor.baseBackground,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child:Row(children: [
+            Expanded(
+              child:Container(
+                decoration: BoxDecoration(
+                  color: ObjectColor.cardBackground,
+                  borderRadius: BorderRadius.all(const Radius.circular(20.0)),
                 ),
-                Expanded(
-                    child:input()
-                ),
-                IconButton(
-                    icon:Icon(Icons.insert_emoticon, color: ObjectColor.baseTextColor , size: 16, ),
-                    onPressed: () {
-                    }
-                ),
+                child: Row(children: [
 
-              ],) ,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: CircleAvatar(
-              backgroundColor: ObjectColor.base,
-              child: IconButton(
-                  icon:Icon(Icons.navigate_next, color: white, ),
-                  onPressed: () {
-                    streamChengState.add(new ChengState(StateType.Main, navigationsAdd: false));
-                    context.read<AfterSplashBloc>().visible(true,true, true);
-                  }
+                  IconButton(
+                      icon:Icon(Icons.send, color: ObjectColor.baseTextColor , size: 16,),
+                      onPressed: ()=>sendText(null)
+                  ),
+                  Expanded(
+                      child:input()
+                  ),
+                  IconButton(
+                      icon:Icon(Icons.insert_emoticon, color: ObjectColor.baseTextColor , size: 16, ),
+                      onPressed: ()=>emoji()
+                  ),
+
+                ],) ,
               ),
             ),
-          )
-        ],),
-      ),
-    );
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: CircleAvatar(
+                backgroundColor: ObjectColor.base,
+                child: IconButton(
+                    icon:Icon(Icons.navigate_next, color: white, ),
+                    onPressed: () {
+                      streamChengState.add(new ChengState(StateType.Main, navigationsAdd: false));
+                      context.read<AfterSplashBloc>().visible(true,true, true);
+                    }
+                ),
+              ),
+            )
+          ],),
+        ),
+      );
+
+    else
+      return Container(
+        padding: const EdgeInsets.all(4.0),
+        constraints:  BoxConstraints(maxWidth: 500),
+        color: ObjectColor.baseBackground,
+        width: MediaQuery.of(context).size.width,
+        child: Center(
+          child:Row(children: [
+            Expanded(
+              child:Container(
+                decoration: BoxDecoration(
+                  color: ObjectColor.cardBackground,
+                  borderRadius: BorderRadius.all(const Radius.circular(20.0)),
+                ),
+                child: Row(children: [
+
+                  IconButton(
+                      icon:Icon(Icons.send, color: ObjectColor.baseTextColor , size: 16,),
+                      onPressed: ()=>sendText(null)
+                  ),
+                  Expanded(
+                      child:input()
+                  ),
+                  IconButton(
+                      icon:Icon(Icons.insert_emoticon, color: ObjectColor.baseTextColor , size: 16, ),
+                      onPressed: ()=>emoji()
+                  ),
+
+                ],) ,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5),
+              child: CircleAvatar(
+                backgroundColor: ObjectColor.base,
+                child: IconButton(
+                    icon:Icon(Icons.navigate_next, color: white, ),
+                    onPressed: () {
+                      streamChengState.add(new ChengState(StateType.Main, navigationsAdd: false));
+                      context.read<AfterSplashBloc>().visible(true,true, true);
+                    }
+                ),
+              ),
+            )
+          ],),
+        ),
+      );
+
   }
 
   void listAdd() {
@@ -233,20 +297,44 @@ class _Content extends State<Content> {
   }
 
   Widget input() {
-   return TextFormField(
-     style: TextStyle(
-       color: ObjectColor.baseTextColor,
-       fontSize: 14,
-       height: 0.8,
-     ),
-     onChanged: (value) {
-       // if(onChange != null)onChange(value);
-     } ,
-     decoration: InputDecoration(
-       border: InputBorder.none,
-       //border: OutlineInputBorder(),
-     ),
-   );
+    return TextFormField(
+      controller: _textController,
+      keyboardType: TextInputType.text,
+      focusNode: _focusNode,
+      style: TextStyle(
+        color: ObjectColor.baseTextColor,
+        fontSize: 14,
+        height: 0.8,
+      ),
+      onChanged: (value) {
+        // if(onChange != null)onChange(value);
+      } ,
+
+      onFieldSubmitted: (value)=>sendText(value) ,
+      decoration: InputDecoration(
+        border: InputBorder.none,
+        //border: OutlineInputBorder(),
+      ),
+    );
+  }
+
+  Widget sendText(value) {
+    if(!Tools.IsNullOrEmpty(_textController.text)){
+      list.insert(0, ChatModel.setProperty(Msg: _textController.text, b: true, Date: DateTime.now().toString() ));
+      setState(() {
+        _textController.text = '';
+      });
+    }
+    Timer(Duration(milliseconds: 1), () {
+      _focusNode.requestFocus();
+    });
+  }
+
+  Widget emoji() {
+    _imojiBox= true;
+    Timer(Duration(milliseconds: 1), () {
+      _focusNode.unfocus();
+    });
   }
 
 }
