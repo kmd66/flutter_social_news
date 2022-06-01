@@ -29,6 +29,7 @@
 .packages
 .pub-cache/
 .pub/
+.vs/
 /build/
 /web/
 /windows/
