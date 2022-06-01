@@ -29,4 +29,6 @@ class AppPropertis {
 
   static bool isWillPopScope = true;
   static String defaultImg ='assets/login.jpg';
+  static String emojiUrl ='http://localhost:8080/imoji/';
+
 }

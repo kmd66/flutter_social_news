@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_social_news/core/Widgets/imageGif.dart';
 import 'package:flutter_social_news/core/Widgets/showObj.dart';
+import 'package:flutter_social_news/helper/appPropertis.dart';
 import 'package:provider/provider.dart';
 import '../../../core/Widgets/getImage.dart';
 import '../../../core/bloc/afterSplashBloc.dart';
@@ -163,7 +165,9 @@ class _Content extends State<Content> {
             child:
             Stack(
                 children : [
-                  Text('${model.Msg} - ${model.Date}',style: Style.h5(color: white),),
+                  model.Msg.contains('<emj:')?
+                  ImageGif(Tools.emoji(model.Msg), height: 70, width: 70)
+                      :Text('${model.Msg} - ${model.Date}',style: Style.h5(color: white),),
                   Positioned(
                       left: model.b? 0:null,
                       child: CustomPaint(painter: ChatBubbleTriangle(model.b),)
@@ -178,52 +182,56 @@ class _Content extends State<Content> {
   Widget btn(BuildContext context) {
     if(_imojiBox)
       return Container(
-        padding: const EdgeInsets.all(4.0),
         constraints:  BoxConstraints(maxWidth: 500),
         height: 400,
-
-        color: ObjectColor.baseBackground,
         width: MediaQuery.of(context).size.width,
-        child: Center(
-          child:Row(children: [
-            Expanded(
-              child:Container(
-                decoration: BoxDecoration(
-                  color: ObjectColor.cardBackground,
-                  borderRadius: BorderRadius.all(const Radius.circular(20.0)),
-                ),
-                child: Row(children: [
 
-                  IconButton(
-                      icon:Icon(Icons.send, color: ObjectColor.baseTextColor , size: 16,),
-                      onPressed: ()=>sendText(null)
+        decoration: BoxDecoration(
+          color: ObjectColor.baseBackground,
+          border: Border.all(
+              color: ObjectColor.baseBorder,
+              width: 1.0,
+              style: BorderStyle.solid
+          ),
+        ),
+
+        child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              var imgSize = constraints.maxWidth / 7;
+              return Center(
+                child: Column(children: [
+                  Container(
+                    color: ObjectColor.cardBackground,
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.close, color: ObjectColor.baseTextColor,),
+                        onPressed: () {
+                          setState(() => _imojiBox = false);
+                        }
+                    ),
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
                   ),
                   Expanded(
-                      child:input()
+                    child: Container(
+                      child: Wrap(children: [
+                        emojiWidget('${AppPropertis.emojiUrl}/1.gif',imgSize),
+                        emojiWidget('${AppPropertis.emojiUrl}/3.gif',imgSize),
+                        emojiWidget('${AppPropertis.emojiUrl}/4.gif',imgSize),
+                        emojiWidget('${AppPropertis.emojiUrl}/5.gif',imgSize),
+                        emojiWidget('${AppPropertis.emojiUrl}/6.gif',imgSize),
+                        emojiWidget('${AppPropertis.emojiUrl}/7.gif',imgSize),
+                        emojiWidget('${AppPropertis.emojiUrl}/8.gif',imgSize),
+                      ],),
+                    ),
                   ),
-                  IconButton(
-                      icon:Icon(Icons.insert_emoticon, color: ObjectColor.baseTextColor , size: 16, ),
-                      onPressed: ()=>emoji()
-                  ),
+                ],),
+              );
 
-                ],) ,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: CircleAvatar(
-                backgroundColor: ObjectColor.base,
-                child: IconButton(
-                    icon:Icon(Icons.navigate_next, color: white, ),
-                    onPressed: () {
-                      streamChengState.add(new ChengState(StateType.Main, navigationsAdd: false));
-                      context.read<AfterSplashBloc>().visible(true,true, true);
-                    }
-                ),
-              ),
-            )
-          ],),
-        ),
+            }
+        )
       );
 
     else
@@ -251,7 +259,7 @@ class _Content extends State<Content> {
                   ),
                   IconButton(
                       icon:Icon(Icons.insert_emoticon, color: ObjectColor.baseTextColor , size: 16, ),
-                      onPressed: ()=>emoji()
+                      onPressed: ()=>emojiBox()
                   ),
 
                 ],) ,
@@ -330,14 +338,32 @@ class _Content extends State<Content> {
     });
   }
 
-  Widget emoji() {
-    _imojiBox= true;
-    Timer(Duration(milliseconds: 1), () {
-      _focusNode.unfocus();
+  void emojiBox() {
+    setState(() {
+      _imojiBox= true;
+      Timer(Duration(milliseconds: 1), () {
+        _focusNode.unfocus();
+      });
+
     });
+  }
+  Widget emojiWidget(url,imgSize) {
+    return  Container(
+      color: white,
+      margin: const EdgeInsets.all(5.0),
+      width: imgSize- 5,
+      height: imgSize- 5,
+      child:ImageGif(url, height: imgSize- 5, width: imgSize- 5, animation: false,
+        onPressed: (){
+          _textController.text = '<emj:${Tools.fileName(url)}>';
+          sendText(null);
+        },
+      ),
+    );
   }
 
 }
+
 class ChatBubbleTriangle extends CustomPainter {
   final bool b ;
 
